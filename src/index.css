@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: Outfit;
+}
+
+.active hr {
+    @apply block
+}
+
+@media (max-width:740px) {
+    .active  p{
+       @apply text-white bg-primary
+    }
+}
+
+::-webkit-scrollbar {
+    @apply hidden
+}
+
+.default-circle {
+    width: 48px; /* Adjust the size */
+    height: 48px; /* Adjust the size */
+    border-radius: 50%; /* Make it circular */
+    background-color: #e0e0e0; /* Light gray background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #b0b0b0; /* Optional: border */
+  }
+  
