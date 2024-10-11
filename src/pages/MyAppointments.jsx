@@ -3,13 +3,13 @@ import { AppContext } from '../context/AppContext'
 
 const MyAppointments = () => {
 
-    const { doctors } = useContext(AppContext)
+    const { Doctors } = useContext(AppContext)
 
     return (
         <div>
             <p className='pb-3 mt-12 font-medium text-zinc-700 border-b'>My appointments</p>
             <div className=''>
-                {doctors.slice(0, 2).map((item, index) => (
+                {Doctors.slice(0, 2).map((item, index) => (
                     <div key={index} className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b'>
                         <div>
                             <img className='w-32 bg-indigo-50' src={item.image} alt="" />

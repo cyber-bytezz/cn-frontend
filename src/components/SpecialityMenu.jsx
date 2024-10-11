@@ -58,7 +58,7 @@ const SpecialityMenu = () => {
           {filteredSpecialities.length > 0 ? (
             filteredSpecialities.map((item, index) => (
               <Link
-                to={`/doctors/${item.speciality}`}
+                to={`/Doctors/${item.speciality}`}
                 onClick={() => scrollTo(0, 0)}
                 className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300 ease-in-out"
                 key={index}

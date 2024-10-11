@@ -6,7 +6,7 @@ import RelatedDoctors from "../components/RelatedDoctors";
 
 const Appointment = () => {
   const { docId } = useParams();
-  const { doctors, currencySymbol } = useContext(AppContext);
+  const { Doctors, currencySymbol } = useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   const [docInfo, setDocInfo] = useState(null);
@@ -15,7 +15,7 @@ const Appointment = () => {
   const [slotTime, setSlotTime] = useState("");
 
   const fetchDocInfo = () => {
-    const docInfo = doctors.find((doc) => doc._id === docId);
+    const docInfo = Doctors.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
   };
 
@@ -76,10 +76,10 @@ const Appointment = () => {
   };
 
   useEffect(() => {
-    if (doctors.length > 0) {
+    if (Doctors.length > 0) {
       fetchDocInfo();
     }
-  }, [doctors, docId]);
+  }, [Doctors, docId]);
 
   useEffect(() => {
     if (docInfo) {
@@ -152,30 +152,32 @@ const Appointment = () => {
           educational experience that encourages academic success and personal
           development.
         </p>
-        <div className="flex gap-10 mt-4 justify-center">
-          {/* Center highlights items */}
-          {docInfo.highlights.map((highlight, index) => (
-            <div key={index} className="flex flex-col items-center">
-              {highlight.icon ? (
-                <img
-                  src={highlight.icon}
-                  alt={highlight.title}
-                  className="w-12 h-12 rounded-full border border-gray-300"
-                />
-              ) : (
-                <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
-                  {/* Increased size to 16 */}
-                  <span className="text-gray-600 text-xl">?</span>
-                  {/* Optional: Larger placeholder icon */}
-                </div>
-              )}
-              <h3 className="text-sm font-medium mt-2">{highlight.title}</h3>
-              <p className="text-xs text-gray-500 text-center">
-                {highlight.description}
-              </p>
-            </div>
-          ))}
-        </div>
+        <div className="flex gap-10 mt-4 justify-center sm:justify-center w-full sm:overflow-visible overflow-x-auto px-5">
+    {/* Center highlights items */}
+    {docInfo.highlights.map((highlight, index) => (
+      <div
+        key={index}
+        className="flex flex-col items-center flex-shrink-0 min-w-[120px]"
+      >
+        {highlight.icon ? (
+          <img
+            src={highlight.icon}
+            alt={highlight.title}
+            className="w-12 h-12 rounded-full border border-gray-300"
+          />
+        ) : (
+          <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
+            {/* Increased size to 16 */}
+            <span className="text-gray-600 text-xl">?</span>
+          </div>
+        )}
+        <h3 className="text-sm font-medium mt-2">{highlight.title}</h3>
+        <p className="text-xs text-gray-500 text-center">
+          {highlight.description}
+        </p>
+      </div>
+    ))}
+  </div>
       </div>
 
       {/* Booking slots */}

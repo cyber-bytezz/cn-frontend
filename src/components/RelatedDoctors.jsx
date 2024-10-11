@@ -6,16 +6,16 @@ import { AppContext } from '../context/AppContext'
 const RelatedDoctors = ({ speciality, docId }) => {
 
     const navigate = useNavigate()
-    const { doctors } = useContext(AppContext)
+    const { Doctors } = useContext(AppContext)
 
     const [relDoc, setRelDoc] = useState([])
 
     useEffect(() => {
-        if (doctors.length > 0 && speciality) {
-            const doctorsData = doctors.filter((doc) => doc.speciality === speciality && doc._id !== docId)
-            setRelDoc(doctorsData)
+        if (Doctors.length > 0 && speciality) {
+            const DoctorsData = Doctors.filter((doc) => doc.speciality === speciality && doc._id !== docId)
+            setRelDoc(DoctorsData)
         }
-    }, [doctors, speciality, docId])
+    }, [Doctors, speciality, docId])
 
     return (
         <div className='flex flex-col items-center gap-4 my-16 text-gray-900'>

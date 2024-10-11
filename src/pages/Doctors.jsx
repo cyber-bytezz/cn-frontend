@@ -9,23 +9,23 @@ const Doctors = () => {
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
 
-  const { doctors } = useContext(AppContext);
+  const { Doctors } = useContext(AppContext);
 
   const applyFilter = () => {
     if (speciality) {
-      setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
+      setFilterDoc(Doctors.filter((doc) => doc.speciality === speciality));
     } else {
-      setFilterDoc(doctors);
+      setFilterDoc(Doctors);
     }
   };
 
   useEffect(() => {
     applyFilter();
-  }, [doctors, speciality]);
+  }, [Doctors, speciality]);
 
   return (
     <div>
-      <p className="text-gray-600">Browse through the doctors specialist.</p>
+      <p className="text-gray-600">Browse through the Doctors specialist.</p>
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
         <button
           onClick={() => setShowFilter(!showFilter)}
@@ -44,8 +44,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Engineering"
-                ? navigate("/doctors")
-                : navigate("/doctors/Engineering")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Engineering")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Engineering" ? "bg-indigo-100 text-black " : ""
@@ -56,8 +56,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Management"
-                ? navigate("/doctors")
-                : navigate("/doctors/Management")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Management")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Management" ? "bg-indigo-100 text-black " : ""
@@ -68,8 +68,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Medical"
-                ? navigate("/doctors")
-                : navigate("/doctors/Medical")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Medical")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Medical" ? "bg-indigo-100 text-black " : ""
@@ -80,8 +80,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Arts & Humanities"
-                ? navigate("/doctors")
-                : navigate("/doctors/Arts & Humanities")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Arts & Humanities")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Arts & Humanities"
@@ -94,8 +94,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Agriculture"
-                ? navigate("/doctors")
-                : navigate("/doctors/Agriculture")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Agriculture")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Agriculture" ? "bg-indigo-100 text-black " : ""
@@ -106,8 +106,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Law"
-                ? navigate("/doctors")
-                : navigate("/doctors/Law")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Law")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Law" ? "bg-indigo-100 text-black " : ""
@@ -118,8 +118,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Pharmacy"
-                ? navigate("/doctors")
-                : navigate("/doctors/Pharmacy")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Pharmacy")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Pharmacy" ? "bg-indigo-100 text-black " : ""
@@ -130,8 +130,8 @@ const Doctors = () => {
           <p
             onClick={() =>
               speciality === "Allied Health Sciences"
-                ? navigate("/doctors")
-                : navigate("/doctors/Allied Health Sciences")
+                ? navigate("/Doctors")
+                : navigate("/Doctors/Allied Health Sciences")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Allied Health Sciences"
@@ -170,20 +170,19 @@ const Doctors = () => {
 
       {/* New Section Below */}
       <div className="mt-10 text-center">
-  <h1 className="text-2xl font-bold">Schedule Your Appointment</h1>
-  <p className="mt-4 text-gray-700">
-    Contact us today to book your consultation with our specialists.
-  </p>
-  <img
-    src="https://miro.medium.com/v2/resize:fit:1224/0*3rQu3-4MaDINtwW6"
-    alt="Consultation"
-    className="mx-auto my-4 w-[700px] h-auto rounded-lg"
-  />
-  <button className="mt-4 py-3 px-6 bg-indigo-600 text-white rounded-full transition-all hover:bg-indigo-700">
-    Book a Call
-  </button>
-</div>
-
+        <h1 className="text-2xl font-bold">Schedule Your Appointment</h1>
+        <p className="mt-4 text-gray-700">
+          Contact us today to book your consultation with our specialists.
+        </p>
+        <img
+          src="https://miro.medium.com/v2/resize:fit:1224/0*3rQu3-4MaDINtwW6"
+          alt="Consultation"
+          className="mx-auto my-4 w-[700px] h-auto rounded-lg"
+        />
+        <button className="mt-4 py-3 px-6 bg-indigo-600 text-white rounded-full transition-all hover:bg-indigo-700">
+          Book a Call
+        </button>
+      </div>
     </div>
   );
 };
