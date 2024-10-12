@@ -96,6 +96,7 @@ export const Doctors = [
     name: "Hardvard University",
     image: doc1,
     speciality: "Engineering",
+    experience:"1 Year",
     degree: "MBBS",
     field1: "Electronic & Communication Engineering",
     field2: "Computer & Communication Engineering",

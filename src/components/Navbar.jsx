@@ -6,15 +6,22 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const [token, setToken] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
-      <img
+      {/* Logo and Company Name */}
+      <div
+        className="flex items-center cursor-pointer"
         onClick={() => navigate("/")}
-        className="w-44 cursor-pointer"
-        src={assets.logo}
-        alt="Logo"
-      />
+      >
+        <img
+          className="w-14 h-14 rounded-full mr-3" // Updated size and shape
+          src="https://github.com/shadcn.png"
+          alt="Logo"
+        />
+        <span className="text-xl font-semibold text-gray-800">CN</span>
+      </div>
 
       {/* Desktop Menu */}
       <ul className="md:flex items-start gap-5 font-medium hidden">
@@ -23,9 +30,56 @@ const Navbar = () => {
           <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
         </NavLink>
         <NavLink to="/Doctors">
-          <li className="py-1">ALL COLLAGS</li>
+          <li className="py-1">ALL COLLAGES</li>
           <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
         </NavLink>
+
+        {/* Speciality Dropdown Menu */}
+        <div
+          className="relative"
+          onMouseEnter={() => setShowDropdown(true)}
+          onMouseLeave={() => setShowDropdown(false)}
+        >
+          <NavLink to="/">
+            <li className="py-1">SPECIALITY</li>
+            <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
+          </NavLink>
+
+          {/* Dropdown Items */}
+          {showDropdown && (
+            <ul className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg z-10">
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Engineering">Engineering</NavLink>
+              </li>
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Management">Management</NavLink>
+              </li>
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Medical">Medical</NavLink>
+              </li>
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Arts & Humanities">
+                  Arts & Humanities
+                </NavLink>
+              </li>
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Agriculture">Agriculture</NavLink>
+              </li>
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Law">Law</NavLink>
+              </li>
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Pharmacy">Pharmacy</NavLink>
+              </li>
+              <li className="py-2 px-4 hover:bg-gray-200">
+                <NavLink to="/Doctors/Allied Health Sciences">
+                  Allied Health Sciences
+                </NavLink>
+              </li>
+            </ul>
+          )}
+        </div>
+
         <NavLink to="/about">
           <li className="py-1">ABOUT</li>
           <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
@@ -41,7 +95,7 @@ const Navbar = () => {
         {token && (
           <button
             onClick={() => navigate("/book-call")}
-            className="bg-primary text-white px-4 py-2 rounded-full font-light text-xs md:block"
+            className="bg-primary text-white px-6 py-3 rounded-full font-medium text-sm md:block" // Increased padding and font size
           >
             Book a Call
           </button>
@@ -70,12 +124,67 @@ const Navbar = () => {
               alt="Close"
             />
           </div>
+
+          {/* Mobile Menu Items */}
           <ul className="flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium">
             <NavLink onClick={() => setShowMenu(false)} to="/">
               <p className="px-4 py-2 rounded-full inline-block">HOME</p>
             </NavLink>
             <NavLink onClick={() => setShowMenu(false)} to="/Doctors">
-              <p className="px-4 py-2 rounded-full inline-block">ALL Doctors</p>
+              <p className="px-4 py-2 rounded-full inline-block">
+                ALL Doctors
+              </p>
+            </NavLink>
+
+            {/* Dropdown Specialities in Mobile */}
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/Doctors/Engineering"
+            >
+              <p className="px-4 py-2 rounded-full inline-block">Engineering</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/Doctors/Management"
+            >
+              <p className="px-4 py-2 rounded-full inline-block">Management</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/Doctors/Medical"
+            >
+              <p className="px-4 py-2 rounded-full inline-block">Medical</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/Doctors/Arts & Humanities"
+            >
+              <p className="px-4 py-2 rounded-full inline-block">
+                Arts & Humanities
+              </p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/Doctors/Agriculture"
+            >
+              <p className="px-4 py-2 rounded-full inline-block">Agriculture</p>
+            </NavLink>
+            <NavLink onClick={() => setShowMenu(false)} to="/Doctors/Law">
+              <p className="px-4 py-2 rounded-full inline-block">Law</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/Doctors/Pharmacy"
+            >
+              <p className="px-4 py-2 rounded-full inline-block">Pharmacy</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to="/Doctors/Allied Health Sciences"
+            >
+              <p className="px-4 py-2 rounded-full inline-block">
+                Allied Health Sciences
+              </p>
             </NavLink>
             <NavLink onClick={() => setShowMenu(false)} to="/about">
               <p className="px-4 py-2 rounded-full inline-block">ABOUT</p>

@@ -41,106 +41,21 @@ const Doctors = () => {
           }`}
         >
           {/* Filter options */}
-          <p
-            onClick={() =>
-              speciality === "Engineering"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Engineering")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Engineering" ? "bg-indigo-100 text-black " : ""
-            }`}
-          >
-            Engineering
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Management"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Management")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Management" ? "bg-indigo-100 text-black " : ""
-            }`}
-          >
-            Management
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Medical"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Medical")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Medical" ? "bg-indigo-100 text-black " : ""
-            }`}
-          >
-            Medical
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Arts & Humanities"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Arts & Humanities")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Arts & Humanities"
-                ? "bg-indigo-100 text-black "
-                : ""
-            }`}
-          >
-            Arts & Humanities
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Agriculture"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Agriculture")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Agriculture" ? "bg-indigo-100 text-black " : ""
-            }`}
-          >
-            Agriculture
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Law"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Law")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Law" ? "bg-indigo-100 text-black " : ""
-            }`}
-          >
-            Law
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Pharmacy"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Pharmacy")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Pharmacy" ? "bg-indigo-100 text-black " : ""
-            }`}
-          >
-            Pharmacy
-          </p>
-          <p
-            onClick={() =>
-              speciality === "Allied Health Sciences"
-                ? navigate("/Doctors")
-                : navigate("/Doctors/Allied Health Sciences")
-            }
-            className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
-              speciality === "Allied Health Sciences"
-                ? "bg-indigo-100 text-black "
-                : ""
-            }`}
-          >
-            Allied Health Science
-          </p>
+          {["Engineering", "Management", "Medical", "Arts & Humanities", "Agriculture", "Law", "Pharmacy", "Allied Health Sciences"].map((field) => (
+            <p
+              key={field}
+              onClick={() =>
+                speciality === field
+                  ? navigate("/Doctors")
+                  : navigate(`/Doctors/${field}`)
+              }
+              className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
+                speciality === field ? "bg-indigo-100 text-black " : ""
+              }`}
+            >
+              {field}
+            </p>
+          ))}
         </div>
         <div className="w-full grid grid-cols-auto gap-4 gap-y-6">
           {filterDoc.map((item, index) => (
@@ -152,7 +67,12 @@ const Doctors = () => {
               className="border border-indigo-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
               key={index}
             >
-              <img className="bg-indigo-50" src={item.image} alt="" />
+              {/* Use object-fit to ensure the image fits nicely */}
+              <img
+                className="bg-indigo-50 w-full h-48 object-cover"
+                src={item.image}
+                alt={item.name}
+              />
               <div className="p-4">
                 <div className="flex items-center gap-2 text-sm text-center text-green-500">
                   <p className="w-2 h-2 bg-green-500 rounded-full"></p>

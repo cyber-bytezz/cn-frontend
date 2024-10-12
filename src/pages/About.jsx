@@ -37,6 +37,20 @@ const About = () => {
           <p >Tailored recommendations and reminders to help you stay on top of your health.</p>
         </div>
       </div>
+      <div className="mt-10 text-center">
+        <h1 className="text-2xl font-bold">Schedule Your Appointment</h1>
+        <p className="mt-4 text-gray-700">
+          Contact us today to book your consultation with our specialists.
+        </p>
+        <img
+          src="https://miro.medium.com/v2/resize:fit:1224/0*3rQu3-4MaDINtwW6"
+          alt="Consultation"
+          className="mx-auto my-4 w-[700px] h-auto rounded-lg"
+        />
+        <button className="mt-4 py-3 px-6 bg-indigo-600 text-white rounded-full transition-all hover:bg-indigo-700">
+          Book a Call
+        </button>
+      </div>
 
     </div>
   )

@@ -8,7 +8,7 @@ const Footer = () => {
 
         <div>
           <img className='mb-5 w-40' src={assets.logo} alt="" />
-          <p className='w-full md:w-2/3 text-gray-600 leading-6'>We specialize in helping students navigate the college admission process. Our experienced consultants provide personalized guidance to secure placements in various colleges, ensuring you find the right fit for your academic goals. Let us simplify your journey and help you achieve a brighter future!</p>
+          <p className='w-full md:w-2/3 text-gray-600 leading-6'>We specialize in helping students navigate the college admission process. Our experienced consultants provide personalized guidance to secure placements in various Doctors, ensuring you find the right fit for your academic goals. Let us simplify your journey and help you achieve a brighter future!</p>
         </div>
 
         <div>
