@@ -29,7 +29,7 @@ const Header = () => {
       {/* --------- Header Right --------- */}
       <div className="md:w-1/2 relative">
         <img
-          className="w-full md:absolute bottom-0 h-auto rounded-lg"
+          className="w-full md:absolute bottom-0 h-auto rounded-lg lg:h-[400px] md:h-[768px]"
           src={assets.header_img}
           alt=""
         />

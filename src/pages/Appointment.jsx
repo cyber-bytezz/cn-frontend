@@ -145,39 +145,40 @@ const Appointment = () => {
       </div>
 
       {/* Highlights Section */}
+      {/* Highlights Section */}
       <div className="flex flex-col items-center gap-4 my-16 text-gray-900">
-        <h1 className="text-3xl font-medium"> Campus Rating</h1>
+        <h1 className="text-3xl font-medium">Campus Rating</h1>
         <p className="sm:w-1/3 text-center text-sm">
           This positive feedback reflects our commitment to providing a quality
           educational experience that encourages academic success and personal
           development.
         </p>
-        <div className="flex gap-10 mt-4 justify-center sm:justify-center w-full sm:overflow-visible overflow-x-auto px-5">
-    {/* Center highlights items */}
-    {docInfo.highlights.map((highlight, index) => (
-      <div
-        key={index}
-        className="flex flex-col items-center flex-shrink-0 min-w-[120px]"
-      >
-        {highlight.icon ? (
-          <img
-            src={highlight.icon}
-            alt={highlight.title}
-            className="w-12 h-12 rounded-full border border-gray-300"
-          />
-        ) : (
-          <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
-            {/* Increased size to 16 */}
-            <span className="text-gray-600 text-xl">?</span>
-          </div>
-        )}
-        <h3 className="text-sm font-medium mt-2">{highlight.title}</h3>
-        <p className="text-xs text-gray-500 text-center">
-          {highlight.description}
-        </p>
-      </div>
-    ))}
-  </div>
+        {/* Ensure proper alignment in mobile */}
+        <div className="flex gap-10 mt-4 justify-center sm:justify-center w-full overflow-x-auto px-5">
+          {/* Center highlights items */}
+          {docInfo.highlights.map((highlight, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center flex-shrink-0 min-w-[120px] px-2"
+            >
+              {highlight.icon ? (
+                <img
+                  src={highlight.icon}
+                  alt={highlight.title}
+                  className="w-12 h-12 rounded-full border border-gray-300"
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-600 text-xl">?</span>
+                </div>
+              )}
+              <h3 className="text-sm font-medium mt-2">{highlight.title}</h3>
+              <p className="text-xs text-gray-500 text-center">
+                {highlight.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Booking slots */}

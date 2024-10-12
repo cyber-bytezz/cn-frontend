@@ -23,9 +23,9 @@ const TopDoctors = () => {
                         key={index}
                     >
                         {/* Container for the image with fixed height for square shape */}
-                        <div className='h-64 w-64 flex justify-center items-center'>
+                        <div className=' justify-center items-center'>
                             <img 
-                                className='object-cover h-full w-full' 
+                                className='bg-indigo-50 w-full h-48 object-cover' 
                                 src={item.image} 
                                 alt={item.name} 
                             />

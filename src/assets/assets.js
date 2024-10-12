@@ -145,7 +145,7 @@ export const Collages = [
   },
   {
     _id: "doc2",
-    name: "Dr. Emily Larson",
+    name: "Jeppiar Engineering Collage",
     image: doc2,
     speciality: "Management",
     degree: "MBBS",
@@ -195,7 +195,7 @@ export const Collages = [
   },
   {
     _id: "doc3",
-    name: "Dr. Sarah Patel",
+    name: "St.Joseph Engineering Collage",
     image: doc3,
     speciality: "Medical",
     field1: "Electronic & Communication Engineering",
@@ -245,7 +245,7 @@ export const Collages = [
   },
   {
     _id: "doc4",
-    name: "Dr. Christopher Lee",
+    name: "SathyaBhama University",
     image: doc4,
     speciality: "Arts & Humanities",
     degree: "MBBS",
@@ -295,7 +295,7 @@ export const Collages = [
   },
   {
     _id: "doc5",
-    name: "Dr. Jennifer Garcia",
+    name: "Panimalar Engineering Collage",
     image: doc5,
     speciality: "Agriculture",
     degree: "MBBS",
@@ -345,7 +345,7 @@ export const Collages = [
   },
   {
     _id: "doc6",
-    name: "Dr. Andrew Williams",
+    name: "Rajalakshmi Engineering Collage",
     image: doc6,
     speciality: "Law",
     degree: "MBBS",
@@ -395,7 +395,7 @@ export const Collages = [
   },
   {
     _id: "doc7",
-    name: "Dr. Christopher Davis",
+    name: "Saveetha Engineering Collage",
     image: doc7,
     speciality: "Pharmacy",
     degree: "MBBS",
@@ -445,7 +445,7 @@ export const Collages = [
   },
   {
     _id: "doc8",
-    name: "Dr. Timothy White",
+    name: "SRM University",
     image: doc8,
     speciality: "Allied Health Sciences",
     degree: "MBBS",
@@ -495,7 +495,7 @@ export const Collages = [
   },
   {
     _id: "doc9",
-    name: "Dr. Ava Mitchell",
+    name: "VelTech University",
     image: doc9,
     speciality: "Engineering",
     degree: "MBBS",
@@ -545,7 +545,7 @@ export const Collages = [
   },
   {
     _id: "doc10",
-    name: "Dr. Jeffrey King",
+    name: "SNS University",
     image: doc10,
     field1: "Electronic & Communication Engineering",
     field2: "Computer & Communication Engineering",
@@ -595,7 +595,7 @@ export const Collages = [
   },
   {
     _id: "doc11",
-    name: "Dr. Zoe Kelly",
+    name: "StanFord University",
     image: doc11,
     speciality: "Medical",
     degree: "MBBS",
@@ -645,7 +645,7 @@ export const Collages = [
   },
   {
     _id: "doc12",
-    name: "Dr. Patrick Harris",
+    name: "Kingdom University",
     image: doc12,
     speciality: "Arts & Humanities",
     degree: "MBBS",

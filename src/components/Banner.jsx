@@ -15,7 +15,7 @@ const Banner = () => {
                     <p className='mt-4'>100+ College Consultants</p>
                 </div>
                 <button
-                    onClick={() => { navigate('/login'); scrollTo(0, 0) }}
+                    onClick={() => { navigate('/form'); scrollTo(0, 0) }}
                     className='bg-white text-sm sm:text-base text-gray-600 px-8 py-3 rounded-full mt-6 flex items-center justify-center gap-2 hover:scale-105 transition-all'>
                     <FaPhoneAlt /> {/* Call icon */}
                     Book a Call
