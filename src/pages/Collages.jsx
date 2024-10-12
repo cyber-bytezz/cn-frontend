@@ -3,25 +3,25 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { assets } from "../assets/assets";
 
-const Doctors = () => {
+const Collages = () => {
   const { speciality } = useParams();
   const [filterDoc, setFilterDoc] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
 
-  const { Doctors } = useContext(AppContext);
+  const { Collages } = useContext(AppContext);
 
   const applyFilter = () => {
     if (speciality) {
-      setFilterDoc(Doctors.filter((doc) => doc.speciality === speciality));
+      setFilterDoc(Collages.filter((doc) => doc.speciality === speciality));
     } else {
-      setFilterDoc(Doctors);
+      setFilterDoc(Collages);
     }
   };
 
   useEffect(() => {
     applyFilter();
-  }, [Doctors, speciality]);
+  }, [Collages, speciality]);
 
   return (
     <div>
@@ -46,8 +46,8 @@ const Doctors = () => {
               key={field}
               onClick={() =>
                 speciality === field
-                  ? navigate("/Doctors")
-                  : navigate(`/Doctors/${field}`)
+                  ? navigate("/Collages")
+                  : navigate(`/Collages/${field}`)
               }
               className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
                 speciality === field ? "bg-indigo-100 text-black " : ""
@@ -107,4 +107,4 @@ const Doctors = () => {
   );
 };
 
-export default Doctors;
+export default Collages;

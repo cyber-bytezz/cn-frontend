@@ -73,7 +73,7 @@ const Form = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md fade-in">
-                <h2 className="text-2xl font-bold text-center mb-6">User Details Form</h2>
+                <h2 className="text-2xl font-bold text-center mb-6">Fill the form soon!</h2>
                 {submitStatus && <p className={`text-${isSubmitted ? 'green' : 'red'}-500 text-center mb-4`}>{submitStatus}</p>}
                 <form onSubmit={handleSubmit}>
                     {/* Form Fields */}

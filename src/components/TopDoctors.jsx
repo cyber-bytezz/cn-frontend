@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext';
 
 const TopDoctors = () => {
     const navigate = useNavigate();
-    const { Doctors } = useContext(AppContext);
+    const { Collages } = useContext(AppContext);
 
     return (
         <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
@@ -13,7 +13,7 @@ const TopDoctors = () => {
                 Explore our handpicked list of top colleges. Choose the right institution and easily book your admission consultation today.
             </p>
             <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
-                {Doctors.slice(0, 10).map((item, index) => (
+                {Collages.slice(0, 10).map((item, index) => (
                     <div
                         onClick={() => {
                             navigate(`/appointment/${item._id}`);
@@ -42,7 +42,7 @@ const TopDoctors = () => {
                 ))}
             </div>
             <button 
-                onClick={() => { navigate('/Doctors'); window.scrollTo(0, 0); }} 
+                onClick={() => { navigate('/Collages'); window.scrollTo(0, 0); }} 
                 className='bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10'
             >
                 more

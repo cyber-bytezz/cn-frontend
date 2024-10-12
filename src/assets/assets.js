@@ -28,12 +28,14 @@ import doc10 from "./doc2.png";
 import doc11 from "./doc1.png";
 import doc12 from "./doc2.png";
 
-import Dermatologist from "./Dermatologist.svg";
-import Gastroenterologist from "./Gastroenterologist.svg";
-import General_physician from "./General_physician.svg";
-import Gynecologist from "./Gynecologist.svg";
-import Neurologist from "./Neurologist.svg";
-import Pediatricians from "./Pediatricians.svg";
+import Engineering from "./Engineering.png";
+import Medical from "./Management.png";
+import Management from "./Management.png";
+import Arts_Humanities from "./Arts_Humanities.png";
+import Agriculture from "./Agriculture.png";
+import Law from "./Law.png";
+import Pharmacy from "./Pharmacy.png";
+import Allied_Health_Sciences from "./Allied_Health_Sciences.png";
 
 export const assets = {
   appointment_img,
@@ -58,49 +60,49 @@ export const assets = {
 export const specialityData = [
   {
     speciality: "Engineering",
-    image: General_physician,
+    image: Engineering,
   },
   {
     speciality: "Management",
-    image: Gynecologist,
+    image: Management,
   },
   {
     speciality: "Medical",
-    image: Dermatologist,
+    image: Medical,
   },
   {
     speciality: "Arts & Humanities",
-    image: Pediatricians,
+    image: Arts_Humanities,
   },
   {
     speciality: "Agriculture",
-    image: Neurologist,
+    image: Agriculture,
   },
   {
     speciality: "Law",
-    image: Gastroenterologist,
+    image: Law,
   },
   {
     speciality: "Pharmacy",
-    image: Gastroenterologist,
+    image: Pharmacy,
   },
   {
     speciality: "Allied Health Sciences",
-    image: Gastroenterologist,
+    image: Allied_Health_Sciences,
   },
 ];
 
-export const Doctors = [
+export const Collages = [
   {
     _id: "doc1",
-    name: "Hardvard University",
+    name: "Harvard University",
     image: doc1,
     speciality: "Engineering",
     experience:"1 Year",
     degree: "MBBS",
-    field1: "Electronic & Communication Engineering",
-    field2: "Computer & Communication Engineering",
-    field3: "Information & Technology",
+    field1: "ECE",
+    field2: "CSE",
+    field3: "IT",
     field4: "Bio-Technology",
     field5: "Mechanical Engineering",
     field6: "Aeronautical Engineering",
@@ -108,7 +110,7 @@ export const Doctors = [
     field8: "Art & Science",
     fees: 50,
     about:
-    "Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.",
+    "we specialize in helping students navigate the college admission process. Our experienced consultants provide personalized guidance to secure placements in various Collages, ensuring you find the right fit for your academic goals. Let us simplify your journey and help you achieve a brighter future!.",
     highlights: [
       {
         icon: "https://static.vecteezy.com/system/resources/previews/006/899/230/non_2x/mystery-random-loot-box-from-game-icon-vector.jpg",

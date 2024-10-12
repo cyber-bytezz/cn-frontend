@@ -6,7 +6,7 @@ import RelatedDoctors from "../components/RelatedDoctors";
 
 const Appointment = () => {
   const { docId } = useParams();
-  const { Doctors, currencySymbol } = useContext(AppContext);
+  const { Collages, currencySymbol } = useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   const [docInfo, setDocInfo] = useState(null);
@@ -15,7 +15,7 @@ const Appointment = () => {
   const [slotTime, setSlotTime] = useState("");
 
   const fetchDocInfo = () => {
-    const docInfo = Doctors.find((doc) => doc._id === docId);
+    const docInfo = Collages.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
   };
 
@@ -76,10 +76,10 @@ const Appointment = () => {
   };
 
   useEffect(() => {
-    if (Doctors.length > 0) {
+    if (Collages.length > 0) {
       fetchDocInfo();
     }
-  }, [Doctors, docId]);
+  }, [Collages, docId]);
 
   useEffect(() => {
     if (docInfo) {
@@ -228,6 +228,20 @@ const Appointment = () => {
 
       {/* Listing Related Doctors */}
       <RelatedDoctors speciality={docInfo.speciality} docId={docId} />
+      <div className="mt-10 text-center">
+        <h1 className="text-2xl font-bold">Still Confused!</h1>
+        <p className="mt-4 text-gray-700">
+          Contact us today to book your consultation with our specialists.
+        </p>
+        <img
+          src="https://miro.medium.com/v2/resize:fit:1224/0*3rQu3-4MaDINtwW6"
+          alt="Consultation"
+          className="mx-auto my-4 w-[700px] h-auto rounded-lg"
+        />
+        <button className="mt-4 py-3 px-6 bg-indigo-600 text-white rounded-full transition-all hover:bg-indigo-700">
+          Book a Call
+        </button>
+      </div>
     </div>
   ) : null;
 };
