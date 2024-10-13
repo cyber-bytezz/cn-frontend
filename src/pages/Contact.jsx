@@ -11,7 +11,11 @@ const Contact = () => {
       </div>
 
       <div className='my-10 flex flex-col justify-center md:flex-row gap-10 mb-28 text-sm'>
-        <img className='w-full md:max-w-[360px]' src={assets.contact_image} alt="" />
+        <img
+          src="https://miro.medium.com/v2/resize:fit:1224/0*3rQu3-4MaDINtwW6"
+          alt="Consultation"
+          className="mx-auto my-4 w-[700px] h-auto rounded-lg"
+        />
         <div className='flex flex-col justify-center items-start gap-6'>
           <p className=' font-semibold text-lg text-gray-600'>OUR OFFICE</p>
           <p className=' text-gray-500'>TN Chennai <br /> INdia</p>
