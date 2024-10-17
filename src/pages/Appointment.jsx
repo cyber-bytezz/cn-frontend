@@ -1,18 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import { assets } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 import RelatedDoctors from "../components/RelatedDoctors";
+import Form from "./Form";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 const Appointment = () => {
   const { docId } = useParams();
   const { Collages, currencySymbol } = useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
+  
+  const navigate = useNavigate(); // Initialize useNavigate
+  
   const [docInfo, setDocInfo] = useState(null);
   const [docSlots, setDocSlots] = useState([]);
   const [slotIndex, setSlotIndex] = useState(0);
   const [slotTime, setSlotTime] = useState("");
+  const [isFormVisible, setIsFormVisible] = useState(false); // Control form visibility
+  const [appointmentDetails, setAppointmentDetails] = useState({});
 
   const fetchDocInfo = () => {
     const docInfo = Collages.find((doc) => doc._id === docId);
@@ -21,17 +27,12 @@ const Appointment = () => {
 
   const getAvailableSlots = () => {
     setDocSlots([]);
-
-    // Getting current date
     const today = new Date();
-
     for (let i = 0; i < 7; i++) {
       const currentDate = new Date(today);
       currentDate.setDate(today.getDate() + i);
       const endTime = new Date(currentDate);
       endTime.setHours(21, 0, 0, 0);
-
-      // Set hours for the current day
       if (i === 0) {
         currentDate.setHours(
           currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10
@@ -41,38 +42,30 @@ const Appointment = () => {
         currentDate.setHours(10);
         currentDate.setMinutes(0);
       }
-
       const timeSlots = [];
-
       while (currentDate < endTime) {
         const formattedTime = currentDate.toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
         });
-
-        // Add slot to array
         timeSlots.push({
           datetime: new Date(currentDate),
           time: formattedTime,
         });
-
-        // Increment current time by 30 minutes
         currentDate.setMinutes(currentDate.getMinutes() + 30);
       }
-
       setDocSlots((prev) => [...prev, timeSlots]);
     }
   };
 
   const bookAppointment = () => {
     const date = docSlots[slotIndex][0].datetime;
-
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-
     const slotDate = `${day}_${month}_${year}`;
-    console.log("Booking Appointment on:", slotDate, "at", slotTime);
+    setAppointmentDetails({ slotDate, slotTime, docName: docInfo.name });
+    setIsFormVisible(true); // Show form after selecting slot
   };
 
   useEffect(() => {
@@ -87,75 +80,106 @@ const Appointment = () => {
     }
   }, [docInfo]);
 
+  // Function to generate star ratings based on the rating value
+  const renderStarRating = (rating) => {
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0;
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+    return (
+      <>
+        {Array(fullStars)
+          .fill()
+          .map((_, i) => (
+            <FaStar key={`full-${i}`} className="text-yellow-500" />
+          ))}
+        {halfStar && <FaStarHalfAlt className="text-yellow-500" />}
+        {Array(emptyStars)
+          .fill()
+          .map((_, i) => (
+            <FaRegStar key={`empty-${i}`} className="text-yellow-500" />
+          ))}
+      </>
+    );
+  };
+
   return docInfo ? (
-    <div>
-      {/* ---------- Doctor Details ----------- */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <div>
+    <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
+      {/* College Details */}
+      <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:flex md:gap-8 transform transition duration-500 hover:scale-105">
+        <div className="flex-shrink-0 w-full md:w-1/3">
           <img
-            className="bg-primary w-full sm:max-w-72 rounded-lg"
+            className="w-full h-64 md:h-full object-cover"
             src={docInfo.image}
             alt={docInfo.name}
           />
         </div>
 
-        <div className="flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
-          {/* ----- Doc Info : name, degree, experience ----- */}
-          <p className="flex items-center gap-2 text-2xl font-medium text-gray-900">
-            {docInfo.name}
-            <img className="w-5" src={assets.verified_icon} alt="Verified" />
-          </p>
-          <div className="flex items-center gap-2 text-sm mt-1 text-gray-600">
-            <p>
+        <div className="p-6 md:p-10 w-full">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center">
+              {docInfo.name}
+              <img
+                className="ml-2 w-5 inline-block"
+                src={assets.verified_icon}
+                alt="Verified"
+                title="Verified"
+              />
+            </h2>
+          </div>
+          <div className="flex items-center mt-2 space-x-4 text-sm text-gray-500">
+            <span>
               {docInfo.degree} - {docInfo.speciality}
-            </p>
-            <button className="py-0.5 px-2 border text-xs rounded-full">
-              {docInfo.experience}
+            </span>
+            <button className="px-3 py-1 text-xs border border-indigo-600 text-indigo-600 rounded-full transition-all hover:bg-indigo-600 hover:text-white">
+              {docInfo.experience} Years Experience
             </button>
           </div>
 
-          {/* ----- Doc About ----- */}
-          <div>
-            <p className="flex items-center gap-1 text-sm font-medium text-gray-900 mt-3">
-              About <img className="w-3" src={assets.info_icon} alt="Info" />
-            </p>
-
-            <p className="text-sm text-gray-500 max-w-[700px] mt-1">
+          {/* About */}
+          <div className="mt-6">
+            <h3 className="text-xl font-semibold text-gray-800">About</h3>
+            <p className="mt-2 text-gray-600 leading-relaxed">
               {docInfo.about}
             </p>
           </div>
-          {/* Fields Display */}
-          {Array.from({ length: 8 }, (_, i) => (
-            <button
-              key={i}
-              className="py-2 px-6 border text-sm rounded-full m-1"
-            >
-              {docInfo[`field${i + 1}`]}
-            </button>
-          ))}
 
-          <p className="text-gray-500 font-medium mt-4">
-            Appointment fee:{" "}
-            <span className="text-gray-600">
-              {currencySymbol}
-              {docInfo.fees}
-            </span>
-          </p>
+          {/* Fields */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {Array.from({ length: 8 }, (_, i) =>
+              docInfo[`field${i + 1}`] ? (
+                <span
+                  key={i}
+                  className="inline-block px-4 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs"
+                >
+                  {docInfo[`field${i + 1}`]}
+                </span>
+              ) : null
+            )}
+          </div>
+
+          {/* Fee */}
+          <div className="mt-6">
+            <p className="text-lg font-semibold text-gray-700">
+              Fees:{" "}
+              <span className="text-indigo-600">
+                {currencySymbol}
+                {docInfo.fees}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Highlights Section */}
-      {/* Highlights Section */}
-      <div className="flex flex-col items-center gap-4 my-16 text-gray-900">
-        <h1 className="text-3xl font-medium">Campus Rating</h1>
-        <p className="sm:w-1/3 text-center text-sm">
-          This positive feedback reflects our commitment to providing a quality
-          educational experience that encourages academic success and personal
-          development.
+      {/* Highlights Section - Horizontal Scrollable */}
+      <div className="mt-12 text-center">
+        <h3 className="text-3xl font-bold text-gray-900">Campus Rating</h3>
+        <p className="text-sm text-gray-500 mt-2">
+          Our commitment to quality education ensures student success and
+          growth.
         </p>
-        {/* Ensure proper alignment in mobile */}
-        <div className="flex gap-10 mt-4 justify-center sm:justify-center w-full overflow-x-auto px-5">
-          {/* Center highlights items */}
+
+        <div className="flex justify-center gap-6 mt-4 overflow-x-auto px-5 py-4 scrollbar-hide">
           {docInfo.highlights.map((highlight, index) => (
             <div
               key={index}
@@ -173,27 +197,75 @@ const Appointment = () => {
                 </div>
               )}
               <h3 className="text-sm font-medium mt-2">{highlight.title}</h3>
-              <p className="text-xs text-gray-500 text-center">
-                {highlight.description}
-              </p>
+
+              {/* Rating stars */}
+              <div className="flex mt-2">
+                {[...Array(5)].map((_, starIndex) => (
+                  <svg
+                    key={starIndex}
+                    className={`w-4 h-4 ${
+                      starIndex < Math.floor(highlight.rating)
+                        ? "text-yellow-500"
+                        : "text-gray-300"
+                    }`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.973h4.155c.958 0 1.358 1.224.588 1.81l-3.365 2.448 1.286 3.973c.3.921-.755 1.688-1.539 1.164L10 13.012l-3.372 2.283c-.784.523-1.838-.243-1.539-1.164l1.286-3.973-3.365-2.448c-.77-.586-.37-1.81.588-1.81h4.155L9.049 2.927z" />
+                  </svg>
+                ))}
+              </div>
             </div>
           ))}
         </div>
       </div>
 
+      {/* Gallery */}
+      <div className="mt-12 text-center">
+        <h3 className="text-3xl font-bold text-gray-900">Campus Gallery</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+          {docInfo.gallery?.map((image, index) => (
+            <div key={index} className="relative group">
+              <img
+                src={image}
+                alt={`Gallery Image ${index + 1}`}
+                className="w-full h-48 object-cover rounded-lg shadow-lg transition-transform duration-300 ease-in-out group-hover:scale-110"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Map */}
+      <div className="mt-12 text-center">
+        <h3 className="text-3xl font-bold text-gray-900">Campus Map</h3>
+        <iframe
+          src={docInfo.location}
+          width="100%"
+          height="400"
+          className="mt-6 rounded-lg shadow-lg"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          title="Campus Map"
+        ></iframe>
+      </div>
+
       {/* Booking slots */}
-      <div className="sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700">
-        <p>Booking slots</p>
-        <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
+      <div className="mt-12 text-center">
+        <h3 className="text-3xl font-bold text-gray-900">Booking Slots</h3>
+
+        <div className="flex justify-center gap-4 mt-6 overflow-x-auto flex-nowrap px-4 py-2 scrollbar-hide">
           {docSlots.length > 0 &&
             docSlots.map((item, index) => (
               <div
-                onClick={() => setSlotIndex(index)}
                 key={index}
-                className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
+                onClick={() => setSlotIndex(index)}
+                className={`text-center p-4 rounded-full cursor-pointer transition-transform duration-300 transform hover:scale-110 flex-shrink-0 ${
                   slotIndex === index
-                    ? "bg-primary text-white"
-                    : "border border-gray-200"
+                    ? "bg-indigo-600 text-white"
+                    : "bg-white text-gray-700 border"
                 }`}
               >
                 <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
@@ -202,44 +274,58 @@ const Appointment = () => {
             ))}
         </div>
 
-        <div className="flex items-center gap-3 w-full overflow-x-scroll mt-4">
+        <div className="flex justify-center gap-4 mt-4 overflow-x-auto flex-nowrap px-4 py-2 scrollbar-hide">
           {docSlots.length > 0 &&
             docSlots[slotIndex]?.map((item, index) => (
-              <p
-                onClick={() => setSlotTime(item.time)}
+              <span
                 key={index}
-                className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
+                onClick={() => setSlotTime(item.time)}
+                className={`px-4 py-2 cursor-pointer rounded-full transition-transform duration-300 transform hover:scale-110 flex-shrink-0 ${
                   item.time === slotTime
-                    ? "bg-primary text-white"
-                    : "text-gray-400 border border-gray-300"
+                    ? "bg-indigo-600 text-white"
+                    : "text-gray-600 bg-white border"
                 }`}
               >
-                {item.time.toLowerCase()}
-              </p>
+                {item.time}
+              </span>
             ))}
         </div>
 
         <button
           onClick={bookAppointment}
-          className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6"
+          className="mt-6 bg-indigo-600 text-white px-6 py-2 rounded-full text-lg font-semibold transition-all hover:bg-indigo-700"
         >
-          Book an appointment
+          Book an Appointment
         </button>
       </div>
 
-      {/* Listing Related Doctors */}
-      <RelatedDoctors speciality={docInfo.speciality} docId={docId} />
-      <div className="mt-10 text-center">
-        <h1 className="text-2xl font-bold">Still Confused!</h1>
-        <p className="mt-4 text-gray-700">
+      {/* Form Section */}
+      {isFormVisible && (
+        <div className="mt-12">
+          <Form appointmentDetails={appointmentDetails} />
+        </div>
+      )}
+
+      {/* Related Colleges */}
+      <div className="mt-12">
+        <RelatedDoctors speciality={docInfo.speciality} docId={docId} />
+      </div>
+
+      {/* Consultation */}
+      <div className="mt-16 text-center">
+        <h3 className="text-3xl font-bold text-gray-900">Still Confused?</h3>
+        <p className="text-gray-600 mt-4">
           Contact us today to book your consultation with our specialists.
         </p>
         <img
           src="https://miro.medium.com/v2/resize:fit:1224/0*3rQu3-4MaDINtwW6"
           alt="Consultation"
-          className="mx-auto my-4 w-[700px] h-auto rounded-lg"
+          className="mt-6 w-full max-w-lg mx-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
         />
-        <button className="mt-4 py-3 px-6 bg-indigo-600 text-white rounded-full transition-all hover:bg-indigo-700">
+        <button
+          onClick={() => navigate("/form")} // Navigate to the form page on button click
+          className="mt-6 bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all hover:bg-indigo-700"
+        >
           Book a Call
         </button>
       </div>

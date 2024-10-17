@@ -23,11 +23,10 @@ const Navbar = () => {
         onClick={() => navigate("/")}
       >
         <img
-          className="w-14 h-14 rounded-full mr-3"
-          src="https://github.com/shadcn.png"
+          className="w-25 h-20 rounded-full mr-3"
+          src="/logo2.png"
           alt="Logo"
         />
-        <span className="text-xl font-semibold text-gray-800">CN</span>
       </div>
 
       {/* Desktop Menu */}

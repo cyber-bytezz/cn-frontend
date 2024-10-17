@@ -99,7 +99,10 @@ const Collages = () => {
           alt="Consultation"
           className="mx-auto my-4 w-[700px] h-auto rounded-lg"
         />
-        <button className="mt-4 py-3 px-6 bg-indigo-600 text-white rounded-full transition-all hover:bg-indigo-700">
+        <button
+          onClick={() => navigate("/form")} // Navigate to the form page on button click
+          className="mt-6 bg-indigo-600 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all hover:bg-indigo-700"
+        >
           Book a Call
         </button>
       </div>

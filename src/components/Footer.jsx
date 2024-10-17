@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { assets } from '../assets/assets';
 
 const Footer = () => {
-  useEffect(() => {
+  {/*useEffect(() => {
     // Inject the Collect chat widget script dynamically
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -18,7 +18,7 @@ const Footer = () => {
     return () => {
       document.head.removeChild(script);
     };
-  }, []);
+  }, []);*/}
 
   return (
     <div className='md:mx-10'>
@@ -26,8 +26,8 @@ const Footer = () => {
         {/* Company Logo and Description */}
         <div>
           <div className="flex items-center mb-5">
-            <img className='w-14 h-14 rounded-full mr-3' src="https://github.com/shadcn.png" alt="Company Logo" />
-            <span className="text-2xl font-semibold">CN</span> {/* Company Name */}
+            <img className='w-30 h-20 rounded-full mr-3' src="/logo2.png" alt="Company Logo" />
+            <span className="text-2xl font-semibold"></span> {/* Company Name */}
           </div>
           <p className='w-full md:w-2/3 text-gray-600 leading-6'>
             We specialize in helping students navigate the college admission process. Our experienced consultants provide personalized guidance to secure placements in various Collages, ensuring you find the right fit for your academic goals. Let us simplify your journey and help you achieve a brighter future!
