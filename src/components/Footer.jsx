@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { assets } from '../assets/assets';
 
 const Footer = () => {
-  {/*useEffect(() => {
+  useEffect(() => {
     // Inject the Collect chat widget script dynamically
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -18,7 +18,7 @@ const Footer = () => {
     return () => {
       document.head.removeChild(script);
     };
-  }, []);*/}
+  }, []);
 
   return (
     <div className='md:mx-10'>
