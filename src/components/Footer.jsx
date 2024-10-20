@@ -4,7 +4,7 @@ import { assets } from '../assets/assets';
 const Footer = () => {
   useEffect(() => {
     // Inject the Collect chat widget script dynamically
-    const script = document.createElement('script');
+    {/*aconst script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
     script.src = 'https://collectcdn.com/launcher.js';
@@ -17,7 +17,7 @@ const Footer = () => {
     // Cleanup function to remove the script when the component is unmounted
     return () => {
       document.head.removeChild(script);
-    };
+    };*/}
   }, []);
 
   return (

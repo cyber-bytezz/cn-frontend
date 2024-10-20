@@ -56,6 +56,16 @@ export const assets = {
   razorpay_logo,
 };
 
+export const collegesData = [
+  { name: "Indian Institute of Technology, Delhi" },
+  { name: "Harvard University" },
+  { name: "Stanford University" },
+  { name: "Oxford University" },
+  { name: "University of Cambridge" },
+  // Add more colleges
+];
+
+
 export const specialityData = [
   {
     speciality: "Engineering",
