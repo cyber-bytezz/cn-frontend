@@ -10,6 +10,8 @@ import CollegeRankingTable from '../components/CollegeRankingTable';
 import States from '../components/States';
 import Admission2024 from '../components/Admission2024'
 import StudyAbroad from '../components/StudyAbroad'
+import TopCollegesGrid from '../components/TopCollegesGrid'
+
 
 const Home = () => {
   return (
@@ -18,6 +20,7 @@ const Home = () => {
       <StudyGoals /> 
       <ExplorePrograms/>
       <TopColleges/>
+      <TopCollegesGrid/>
       <CollegeRankingTable />
       <States/>
       <Admission2024/>
