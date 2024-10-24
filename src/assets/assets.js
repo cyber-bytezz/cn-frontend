@@ -171,7 +171,51 @@ export const Collages = [
           rating: "4.5",
         }
       ],
-      
+      courses: [
+        {
+          name: "Bachelor of Arts [B.A] {Hons.}",
+          duration: "3 Year",
+          type: "Full Time",
+          category: "UG",
+          fees: "₹150,000/- Per Year",
+        },
+        {
+          name: "Bachelor of Arts [B.A]",
+          duration: "3 Year",
+          type: "Full Time",
+          category: "UG",
+          fees: "₹120,000/- Per Year",
+        },
+        {
+          name: "Bachelor of Fine Arts [B.F.A]",
+          duration: "4 Year",
+          type: "Full Time",
+          category: "UG",
+          fees: "₹104,000/- Per Year",
+        }
+      ],
+      placement: {
+        2023: {
+          description: "Another University excelled in 2023 placements...",
+          topRecruiters: [
+            "Google", "Facebook", "TCS", "Wipro", "Infosys", "Capgemini"
+          ],
+          careerCenter: "The Career Resource Center at Another University ensured top placement results in 2023.",
+          totalOffers: 1025
+        },
+        2024: {
+          description: "Another University broke its previous record with more offers in 2024...",
+          topRecruiters: [
+            "Amazon", "Apple", "IBM", "Google", "TCS", "HCL"
+          ],
+          careerCenter: "The 2024 placements saw another round of success for Another University with over 1000 offers.",
+          totalOffers: 1100
+        }
+      },
+      address: {
+        line1: "17th Cross, Richmond",
+        line2: "Circle, Ring Road, London",
+      },
     address: {
       line1: "17th Cross, Richmond",
       line2: "Circle, Ring Road, London",

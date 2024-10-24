@@ -19,8 +19,8 @@ const Home = () => {
       <Header />
       <StudyGoals /> 
       <ExplorePrograms/>
-      <TopColleges/>
       <TopCollegesGrid/>
+      <TopColleges/>
       <CollegeRankingTable />
       <States/>
       <Admission2024/>
