@@ -65,7 +65,6 @@ export const collegesData = [
   // Add more colleges
 ];
 
-
 export const specialityData = [
   {
     speciality: "Engineering",
@@ -108,15 +107,15 @@ export const Collages = [
     image:
       "https://www.static-contents.youth4work.com/university/Documents/Colleges/newsEvent/7ff4495c-1948-4f05-ace0-96837380a810.jpg",
     speciality: "Engineering",
-    gallery: [
-      "https://image-static.collegedunia.com/public/college_data/images/appImage/1522667396Jepp.jpg?h=260&w=360&mode=crop",
-      "https://image-static.collegedunia.com/public/college_data/images/appImage/1522667396Jepp.jpg?h=260&w=360&mode=crop",
-      "https://image-static.collegedunia.com/public/college_data/images/appImage/1522667396Jepp.jpg?h=260&w=360&mode=crop",
-      "https://image-static.collegedunia.com/public/college_data/images/appImage/1522667396Jepp.jpg?h=260&w=360&mode=crop",
-      "https://image-static.collegedunia.com/public/college_data/images/appImage/1522667396Jepp.jpg?h=260&w=360&mode=crop",
-    ],
-    location:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.643931980014!2d80.2179173750746!3d12.866259387439543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525bbace477413%3A0xf70e4decbbd645ea!2sJeppiaar%20Engineering%20College!5e0!3m2!1sen!2sin!4v1729173979491!5m2!1sen!2sin",
+    place: "Tamil Nadu",
+    est: "Estd 2001",
+    anothername: "KG-PTU, Jalandhar",
+    agre: "AICTE, NBA, NAAC-A",
+    location:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.643931980014!2d80.2179173750746!3d12.866259387439543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525bbace477413%3A0xf70e4decbbd645ea!2sJeppiaar%20Engineering%20College!5e0!3m2!1sen!2sin!4v1729173979491!5m2!1sen!2sin",
     experience: "1 Year",
+    rating: "4", // Add this for the star rating
+    reviews: "2512",
     degree: "MBBS",
     field1: "ECE",
     field2: "CSE",
@@ -128,97 +127,110 @@ export const Collages = [
     field8: "Art & Science",
     fees: 50,
     about:
-      "Jeppiaar Engineering College is renowned for its commitment to producing skilled engineers who are ready to tackle global challenges. With a focus on technical education and practical application, the college offers state-of-the-art facilities and an industry-aligned curriculum that ensures students are prepared for real-world engineering problems. The campus promotes innovation and encourages collaboration among its students to push the boundaries of technology.",
-      highlights: [
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
-          title: "Infrastructure",
-          rating: "4.5",
-        },
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
-          title: "Academics",
-          rating: "4.6",
-        },
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
-          title: "Faculty",
-          rating: "4.4",
-        },
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
-          title: "Campus Life",
-          rating: "4.7",
-        },
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
-          title: "Placements",
-          rating: "4.3",
-        },
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
-          title: "Value for Money",
-          rating: "4.2",
-        },
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
-          title: "Research",
-          rating: "4.5",
-        },
-        {
-          icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
-          title: "Environment",
-          rating: "4.5",
-        }
-      ],
-      courses: [
-        {
-          name: "Bachelor of Arts [B.A] {Hons.}",
-          duration: "3 Year",
-          type: "Full Time",
-          category: "UG",
-          fees: "₹150,000/- Per Year",
-        },
-        {
-          name: "Bachelor of Arts [B.A]",
-          duration: "3 Year",
-          type: "Full Time",
-          category: "UG",
-          fees: "₹120,000/- Per Year",
-        },
-        {
-          name: "Bachelor of Fine Arts [B.F.A]",
-          duration: "4 Year",
-          type: "Full Time",
-          category: "UG",
-          fees: "₹104,000/- Per Year",
-        }
-      ],
-      placement: {
-        2023: {
-          description: "Another University excelled in 2023 placements...",
-          topRecruiters: [
-            "Google", "Facebook", "TCS", "Wipro", "Infosys", "Capgemini"
-          ],
-          careerCenter: "The Career Resource Center at Another University ensured top placement results in 2023.",
-          totalOffers: 1025
-        },
-        2024: {
-          description: "Another University broke its previous record with more offers in 2024...",
-          topRecruiters: [
-            "Amazon", "Apple", "IBM", "Google", "TCS", "HCL"
-          ],
-          careerCenter: "The 2024 placements saw another round of success for Another University with over 1000 offers.",
-          totalOffers: 1100
-        }
+      "Jeppiaar Engineering College is renowned for its commitment to producing skilled engineers who are ready to tackle global challenges...",
+    questions: [
+      {
+        question: "What is the admission process?",
+        answer: "The admission process involves applying online...",
       },
-      address: {
-        line1: "17th Cross, Richmond",
-        line2: "Circle, Ring Road, London",
+      {
+        question: "What are the college's facilities?",
+        answer: "The college offers state-of-the-art laboratories, library...",
       },
+      {
+        question: "What is the fee structure?",
+        answer:
+          "The fee structure varies by course, starting from ₹120,000 per year.",
+      },
+    ],
+    courses: [
+      {
+        name: "BBA",
+        duration: "3 Year",
+        type: "Full Time",
+        category: "UG",
+        fees: "₹157,000/- Per Year",
+      },
+      {
+        name: "BCA",
+        duration: "3 Year",
+        type: "Full Time",
+        category: "UG",
+        fees: "₹53,666/- Per Year",
+      },
+    ],
+    placement: {
+      2023: {
+        description: "Another University excelled in 2023 placements...",
+        topRecruiters: [
+          "Google",
+          "Facebook",
+          "TCS",
+          "Wipro",
+          "Infosys",
+          "Capgemini",
+        ],
+        careerCenter:
+          "The Career Resource Center at Another University ensured top placement results in 2023.",
+        totalOffers: 1025,
+      },
+      2024: {
+        description:
+          "Another University broke its previous record with more offers in 2024...",
+        topRecruiters: ["Amazon", "Apple", "IBM", "Google", "TCS", "HCL"],
+        careerCenter:
+          "The 2024 placements saw another round of success for Another University with over 1000 offers.",
+        totalOffers: 1100,
+      },
+    },
     address: {
       line1: "17th Cross, Richmond",
       line2: "Circle, Ring Road, London",
+    },
+
+    facilities: [
+      {
+        name: "Campus",
+        icon: "https://example.com/icon-campus.png",
+      },
+      {
+        name: "Gym",
+        icon: "https://example.com/icon-gym.png",
+      },
+      {
+        name: "Library",
+        icon: "https://example.com/icon-library.png",
+      },
+      {
+        name: "Laboratory",
+        icon: "https://example.com/icon-lab.png",
+      },
+    ],
+
+    rankings: [
+      {
+        year: "2023",
+        award:
+          "Jeppiaar Engineering College received the Best Engineering College Award.",
+      },
+      {
+        year: "2024",
+        award: "Awarded for highest placement offers in Tamil Nadu.",
+      },
+      {
+        year: "2024",
+        award: "Awarded for highest placement offers in Tamil Nadu.",
+      },
+    ],
+
+    highlights: {
+      Established: "2001",
+      Type: "Private",
+      Affiliation: "AICTE, NBA, NAAC-A",
+      Location: "Tamil Nadu",
+      "Exam Frequency": "Annual",
+      "Courses Offered": "Engineering, Technology, Science",
+      "Contact Details": "contact@jeppiaar.edu.in",
     },
   },
   {
@@ -238,45 +250,45 @@ export const Collages = [
     fees: 60,
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
     address: {
       line1: "27th Cross, Richmond",
@@ -304,45 +316,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -366,45 +378,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -428,45 +440,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -490,45 +502,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -553,45 +565,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -615,45 +627,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -678,45 +690,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -741,45 +753,45 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   {
@@ -803,47 +815,46 @@ export const Collages = [
     },
     highlights: [
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png",  // Infrastructure (building icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077113.png", // Infrastructure (building icon)
         title: "Infrastructure",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png",  // Academics (book icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3039/3039491.png", // Academics (book icon)
         title: "Academics",
         rating: "4.6",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png",  // Faculty (teacher icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1046/1046873.png", // Faculty (teacher icon)
         title: "Faculty",
         rating: "4.4",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png",  // Campus Life (activities icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047634.png", // Campus Life (activities icon)
         title: "Campus Life",
         rating: "4.7",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png",  // Placements (briefcase icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/1681/1681053.png", // Placements (briefcase icon)
         title: "Placements",
         rating: "4.3",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png",  // Value for Money (money icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/2591/2591146.png", // Value for Money (money icon)
         title: "Value for Money",
         rating: "4.2",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png",  // Research (research icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/4466/4466882.png", // Research (research icon)
         title: "Research",
         rating: "4.5",
       },
       {
-        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png",  // Environment (tree icon)
+        icon: "https://cdn-icons-png.flaticon.com/512/3629/3629368.png", // Environment (tree icon)
         title: "Environment",
         rating: "4.5",
-      }
+      },
     ],
   },
   // You can continue with the remaining colleges similarly
 ];
-

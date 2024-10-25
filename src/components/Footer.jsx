@@ -1,68 +1,140 @@
-import React, { useEffect } from 'react';
-import { assets } from '../assets/assets';
+import React, { useEffect } from "react";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa"; // Import necessary social media icons
 
 const Footer = () => {
   useEffect(() => {
-    // Inject the Collect chat widget script dynamically
-    {/*aconst script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.src = 'https://collectcdn.com/launcher.js';
-    
-    // Assign the Collect Bot ID
-    window.CollectId = '65b68a1d56c8a5b9944dc123';
-
-    document.head.appendChild(script);
-
-    // Cleanup function to remove the script when the component is unmounted
-    return () => {
-      document.head.removeChild(script);
-    };*/}
+    // Inject the Collect chat widget script dynamically (if needed later)
   }, []);
 
   return (
-    <div className='md:mx-10'>
-      <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10  mt-40 text-sm'>
-        {/* Company Logo and Description */}
-        <div>
-          <div className="flex items-center mb-5">
-            <img className='w-30 h-20 rounded-full mr-3' src="/logo2.png" alt="Company Logo" />
-            <span className="text-2xl font-semibold"></span> {/* Company Name */}
-          </div>
-          <p className='w-full md:w-2/3 text-gray-600 leading-6'>
-            We specialize in helping students navigate the college admission process. Our experienced consultants provide personalized guidance to secure placements in various Collages, ensuring you find the right fit for your academic goals. Let us simplify your journey and help you achieve a brighter future!
+    <footer className="bg-gray-100">
+      {/* Subscribe Section */}
+      <div className="w-full bg-gray-100 py-10">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-2xl font-bold mb-2">Subscribe To Our News Letter</h3>
+          <p className="text-gray-600 mb-6">
+            Get College Notifications, Exam Notifications, and News Updates
           </p>
-        </div>
-
-        {/* Company Links */}
-        <div>
-          <p className='text-xl font-medium mb-5'>COMPANY</p>
-          <ul className='flex flex-col gap-2 text-gray-600'>
-            <li>Home</li>
-            <li>About us</li>
-            <li>Delivery</li>
-            <li>Privacy policy</li>
-          </ul>
-        </div>
-
-        {/* Contact Information */}
-        <div>
-          <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
-          <ul className='flex flex-col gap-2 text-gray-600'>
-            <li>9090909090</li>
-            <li>innonex@gmail.com</li>
-          </ul>
+          <div className="flex justify-center items-center gap-2 flex-wrap">
+            <input
+              type="email"
+              placeholder="Enter your email id"
+              className="px-4 py-3 border border-gray-300 rounded-lg w-full md:w-64"
+            />
+            <input
+              type="text"
+              placeholder="Enter your mobile no"
+              className="px-4 py-3 border border-gray-300 rounded-lg w-full md:w-64"
+            />
+            <select
+              className="px-4 py-3 border border-gray-300 rounded-lg w-full md:w-64"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Choose your course
+              </option>
+              <option value="MBA">MBA</option>
+              <option value="B.Tech">B.Tech</option>
+              <option value="Medical">Medical</option>
+              {/* Add more options as needed */}
+            </select>
+            <button className="px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold">
+              Submit
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Footer Bottom Section */}
-      <div>
-        <hr />
-        <p className='py-5 text-sm text-center'>
-          Copyright 2024 @ InnovNex - All Rights Reserved.
-        </p>
+      {/* Links Section */}
+      <div className="w-full bg-gray-200 py-10">
+        <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-5 gap-8 text-gray-700">
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Top Colleges</h4>
+            <ul className="space-y-2">
+              <li>MBA</li>
+              <li>B.Tech/B.E</li>
+              <li>MCA</li>
+              <li>BCA</li>
+              <li>M.Tech</li>
+              <li>MA</li>
+              <li>BA</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Top Universities</h4>
+            <ul className="space-y-2">
+              <li>Engineering</li>
+              <li>Management</li>
+              <li>Medical</li>
+              <li>Law</li>
+              <li>Commerce</li>
+              <li>Science</li>
+              <li>Arts</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Top Exams</h4>
+            <ul className="space-y-2">
+              <li>CAT</li>
+              <li>GATE</li>
+              <li>JEE-Main</li>
+              <li>NEET</li>
+              <li>XAT</li>
+              <li>CLAT</li>
+              <li>MAT</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Study Abroad</h4>
+            <ul className="space-y-2">
+              <li>Canada</li>
+              <li>USA</li>
+              <li>UK</li>
+              <li>UAE</li>
+              <li>Australia</li>
+              <li>Germany</li>
+              <li>Sweden</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Board Exams</h4>
+            <ul className="space-y-2">
+              <li>CBSE Class 12</li>
+              <li>CBSE Class 10</li>
+              <li>ICSE Class 12</li>
+              <li>ICSE Class 10</li>
+              <li>State Boards</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* Bottom Section with Social Media Icons */}
+      <div className="w-full bg-gray-100 py-6">
+        <div className="container mx-auto px-4 text-center text-sm text-gray-500">
+          <p>© 2024 InnovNex - All Rights Reserved.</p>
+
+          {/* Social Media Icons */}
+          <div className="mt-4 flex justify-center space-x-4">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600">
+              <FaFacebookF size={20} />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-400">
+              <FaTwitter size={20} />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-pink-500">
+              <FaInstagram size={20} />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-700">
+              <FaLinkedinIn size={20} />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-red-600">
+              <FaYoutube size={20} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

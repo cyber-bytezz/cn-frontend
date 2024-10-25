@@ -13,8 +13,8 @@
 }
 
 @media (max-width:740px) {
-    .active  p{
-       @apply text-white bg-primary
+    .active p {
+        @apply text-white bg-primary
     }
 }
 
@@ -23,14 +23,60 @@
 }
 
 .default-circle {
-    width: 48px; /* Adjust the size */
-    height: 48px; /* Adjust the size */
-    border-radius: 50%; /* Make it circular */
-    background-color: #e0e0e0; /* Light gray background */
+    width: 48px;
+    /* Adjust the size */
+    height: 48px;
+    /* Adjust the size */
+    border-radius: 50%;
+    /* Make it circular */
+    background-color: #e0e0e0;
+    /* Light gray background */
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #b0b0b0; /* Optional: border */
-  }
+    border: 1px solid #b0b0b0;
+    /* Optional: border */
+}
 
-  
+
+/* Add this to your CSS to handle navbar overlap */
+body {
+    padding-top: 100px;
+    /* Adjust according to the navbar height */
+}
+
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    /* Ensures it's above other content */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    /* Makes the navbar sleek */
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+        /* Adjust the padding for smaller screens */
+    }
+
+    .fixed-navbar {
+        padding: 10px 15px;
+        z-index: 1000;
+    }
+}
+
+/* Smooth mobile dropdown transitions */
+.mobile-menu {
+    transition: height 0.3s ease-in-out;
+}
+
+/* Avoid hover-based styles on mobile */
+@media (hover: none) {
+    .navbar-item:hover {
+        background-color: inherit;
+    }
+}

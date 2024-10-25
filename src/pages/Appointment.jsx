@@ -4,13 +4,19 @@ import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import RelatedDoctors from "../components/RelatedDoctors";
 import Form from "./Form";
-import { FaStar, FaStarHalfAlt, FaRegStar, FaBuilding, FaRegCalendarAlt } from "react-icons/fa"; // Icons import
+import {
+  FaStar,
+  FaStarHalfAlt,
+  FaRegStar,
+  FaBuilding,
+  FaRegCalendarAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa"; // Icons import
 
 const Appointment = () => {
   const { docId } = useParams();
   const { Collages, currencySymbol } = useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
   const navigate = useNavigate();
 
   const [selectedYear, setSelectedYear] = useState(2023);
@@ -20,10 +26,19 @@ const Appointment = () => {
   const [slotTime, setSlotTime] = useState("");
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [appointmentDetails, setAppointmentDetails] = useState({});
+  const [activeTab, setActiveTab] = useState("overview"); // Active tab state
+  const [faqOpen, setFaqOpen] = useState([]); // Keep track of open FAQs
 
   const fetchDocInfo = () => {
     const docInfo = Collages.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
+    setFaqOpen(new Array(docInfo.questions.length).fill(false)); // Initialize FAQ state
+  };
+
+  const toggleFaq = (index) => {
+    const updatedFaqOpen = [...faqOpen];
+    updatedFaqOpen[index] = !updatedFaqOpen[index]; // Toggle the open state for a specific FAQ
+    setFaqOpen(updatedFaqOpen);
   };
 
   const getAvailableSlots = () => {
@@ -60,13 +75,15 @@ const Appointment = () => {
   };
 
   const bookAppointment = () => {
-    const date = docSlots[slotIndex][0].datetime;
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    const slotDate = `${day}_${month}_${year}`;
-    setAppointmentDetails({ slotDate, slotTime, docName: docInfo.name });
-    setIsFormVisible(true);
+    if (docSlots.length > 0 && docSlots[slotIndex]?.length > 0) {
+      const date = docSlots[slotIndex][0].datetime;
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      const slotDate = `${day}_${month}_${year}`;
+      setAppointmentDetails({ slotDate, slotTime, docName: docInfo.name });
+      setIsFormVisible(true);
+    }
   };
 
   useEffect(() => {
@@ -81,186 +98,308 @@ const Appointment = () => {
     }
   }, [docInfo]);
 
-  return docInfo ? (
-    <div className="p-6 md:p-12 bg-gray-100 min-h-screen">
-      {/* College Details */}
-      <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden md:flex md:gap-8 transform transition duration-500 hover:scale-105">
+  if (!docInfo) {
+    return <div>Loading...</div>; // Ensure data is loaded before rendering
+  }
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  return (
+    <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
+      {/* College Details Section */}
+      <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden md:flex md:gap-8 transition-transform duration-500 hover:scale-105">
         <div className="flex-shrink-0 w-full md:w-1/3">
           <img
-            className="w-full h-64 md:h-full object-cover rounded-t-md md:rounded-l-md"
-            src={docInfo.image}
-            alt={docInfo.name}
+            className="w-full h-64 md:h-full object-cover rounded-t-lg md:rounded-l-2xl"
+            src={docInfo?.image}
+            alt={docInfo?.name}
           />
         </div>
 
         <div className="p-6 md:p-10 w-full">
           <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2 flex items-center">
-              {docInfo.name}
+            <h2 className="text-4xl font-bold text-gray-900 mb-2 flex items-center">
+              {docInfo?.name}
               <img
-                className="ml-2 w-5 inline-block"
                 src={assets.verified_icon}
                 alt="Verified"
+                className="ml-2 w-6 inline-block"
                 title="Verified"
               />
             </h2>
           </div>
-          <div className="flex items-center mt-2 space-x-4 text-sm text-gray-500">
-            <span>
-              {docInfo.degree} - {docInfo.speciality}
-            </span>
-            <button className="px-4 py-1 text-xs border border-indigo-600 text-indigo-600 rounded-full transition-all hover:bg-indigo-600 hover:text-white">
-              {docInfo.experience} Years Experience
-            </button>
-          </div>
 
-          {/* About */}
-          <div className="mt-6">
-            <h3 className="text-xl font-semibold text-gray-800">About</h3>
-            <p className="mt-2 text-gray-600 leading-relaxed">
-              {docInfo.about}
-            </p>
-          </div>
-
-          {/* Fields */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {Array.from({ length: 8 }, (_, i) =>
-              docInfo[`field${i + 1}`] ? (
-                <span
+          {/* Rating and Reviews */}
+          <div className="flex items-center mt-4">
+            <div className="flex items-center space-x-1 text-yellow-400">
+              {[...Array(5)].map((star, i) => (
+                <FaStar
                   key={i}
-                  className="inline-block px-4 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs"
-                >
-                  {docInfo[`field${i + 1}`]}
-                </span>
-              ) : null
-            )}
+                  className={i < docInfo.rating ? "text-yellow-500" : "text-gray-300"}
+                />
+              ))}
+            </div>
+            <p className="ml-2 text-gray-700">
+              {`[${docInfo.rating}] Based on ${docInfo.reviews} Reviews`}
+            </p>
           </div>
 
-          {/* Fee */}
+          {/* About Section */}
           <div className="mt-6">
-            <p className="text-lg font-semibold text-gray-700">
-              Fees:{" "}
-              <span className="text-indigo-600">
-                {currencySymbol}
-                {docInfo.fees}
-              </span>
+            <h3 className="text-2xl font-semibold text-gray-800">About</h3>
+            <p className="mt-2 text-gray-600 leading-relaxed">
+              {docInfo?.about}
             </p>
+          </div>
+
+          {/* Fields Section */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {Object.keys(docInfo)
+              .filter((key) => key.startsWith("field"))
+              .map((key, index) => (
+                <span
+                  key={index}
+                  className="inline-block px-4 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs shadow-sm"
+                >
+                  {docInfo[key]}
+                </span>
+              ))}
           </div>
         </div>
       </div>
 
-      {/* Placements Section */}
-      <div className="mt-12">
-        <h3 className="text-4xl font-bold text-gray-900 mb-6 text-center">
+      {/* Tabs Navigation */}
+      <div className="flex justify-center space-x-4 my-10">
+        <button
+          className={`px-6 py-2 font-semibold rounded-full transition-all ${
+            activeTab === "overview"
+              ? "bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 text-white shadow-lg"
+              : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+          }`}
+          onClick={() => handleTabClick("overview")}
+        >
+          Overview
+        </button>
+        <button
+          className={`px-6 py-2 font-semibold rounded-full transition-all ${
+            activeTab === "coursesFees"
+              ? "bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-500 text-white shadow-lg"
+              : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+          }`}
+          onClick={() => handleTabClick("coursesFees")}
+        >
+          Courses & Fees
+        </button>
+        <button
+          className={`px-6 py-2 font-semibold rounded-full transition-all ${
+            activeTab === "placements"
+              ? "bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-white shadow-lg"
+              : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+          }`}
+          onClick={() => handleTabClick("placements")}
+        >
           Placements
-        </h3>
+        </button>
+      </div>
 
-        {/* Year Selector */}
-        <div className="flex items-center justify-center space-x-4 mb-8">
-          <button
-            onClick={() => setSelectedYear(2023)}
-            className={`px-6 py-2 rounded-full transition-all font-semibold ${
-              selectedYear === 2023
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            2023
-          </button>
-          <button
-            onClick={() => setSelectedYear(2024)}
-            className={`px-6 py-2 rounded-full transition-all font-semibold ${
-              selectedYear === 2024
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-          >
-            2024
-          </button>
+      {/* Overview Content */}
+      {activeTab === "overview" && (
+        <div className="college-overview mt-10 space-y-10">
+          {/* College Overview */}
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Overview</h3>
+            <p>{docInfo.about}</p>
+          </div>
+
+          {/* Affiliations & Approvals Table */}
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Affiliations & Approvals</h3>
+            <table className="min-w-full bg-white border rounded-lg">
+              <thead>
+                <tr className="bg-gray-100 text-left">
+                  <th className="p-4 font-semibold">College</th>
+                  <th className="p-4 font-semibold">Affiliation</th>
+                  <th className="p-4 font-semibold">Approval</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="p-4">{docInfo.name}</td>
+                  <td className="p-4">{docInfo.anothername}</td>
+                  <td className="p-4">{docInfo.agre}</td>
+                </tr>
+                <tr>
+                  <td className="p-4">{docInfo.name}</td>
+                  <td className="p-4">{docInfo.anothername}</td>
+                  <td className="p-4">{docInfo.agre}</td>
+                </tr>
+                <tr>
+                  <td className="p-4">{docInfo.name}</td>
+                  <td className="p-4">{docInfo.anothername}</td>
+                  <td className="p-4">{docInfo.agre}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Rankings & Awards */}
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Rankings & Awards</h3>
+            <table className="min-w-full bg-white border rounded-lg">
+              <thead>
+                <tr className="bg-gray-100 text-left">
+                  <th className="p-4 font-semibold">Year</th>
+                  <th className="p-4 font-semibold">Award</th>
+                </tr>
+              </thead>
+              <tbody>
+                {docInfo.rankings &&
+                  docInfo.rankings.map((ranking, index) => (
+                    <tr key={index}>
+                      <td className="p-4">{ranking.year}</td>
+                      <td className="p-4">{ranking.award}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Facilities */}
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Facilities</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {docInfo.facilities &&
+                docInfo.facilities.map((facility, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center space-y-2"
+                  >
+                    <img
+                      src={facility.icon}
+                      alt={facility.name}
+                      className="w-12 h-12"
+                    />
+                    <span className="text-gray-700">{facility.name}</span>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* College Highlights */}
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Highlights</h3>
+            <table className="min-w-full bg-white border rounded-lg">
+              <tbody>
+                {Object.entries(docInfo.highlights || {}).map(
+                  ([key, value], index) => (
+                    <tr className="border-b" key={index}>
+                      <td className="p-4 font-semibold">{key}</td>
+                      <td className="p-4">{value}</td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
+      )}
 
-        {/* Placement Details Based on Selected Year */}
-        <div className="bg-white p-8 rounded-lg shadow-lg mb-12">
-          <h4 className="text-2xl font-bold text-gray-800 mb-4">
-            {selectedYear} Placement Highlights at {docInfo.name}
-          </h4>
-
-          <p className="text-gray-700 leading-relaxed mb-8">
-            {docInfo.placement[selectedYear].description}
-          </p>
-
-          {/* Top Recruiters */}
-          <h4 className="text-xl font-semibold text-gray-800 mb-4">Top Recruiters</h4>
-          <p className="text-gray-600 mb-6">
-            {docInfo.placement[selectedYear].topRecruiters.join(", ")}.
-          </p>
-
-          {/* Career Resource Center */}
-          <h4 className="text-xl font-semibold text-gray-800 mt-6 mb-2">
-            Career Resource Center
-          </h4>
-          <p className="text-gray-700 mb-6">
-            {docInfo.placement[selectedYear].careerCenter}
-          </p>
-
-          {/* Placement Statistics */}
-          <div className="mt-6">
-            <h4 className="text-xl font-semibold text-gray-800 mb-4">
-              Placement Statistics
-            </h4>
-            <div className="grid grid-cols-2 gap-4 bg-gray-100 p-4 rounded-lg">
-              <div>
-                <p className="font-semibold text-gray-700">Total number of Offers</p>
-                <p className="text-lg font-bold text-indigo-600">
-                  {docInfo.placement[selectedYear].totalOffers} +
-                </p>
+      {/* Courses & Fees Section */}
+      {activeTab === "coursesFees" && (
+        <div className="courses-fees mt-10 space-y-10">
+          {docInfo.courses?.map((course, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-lg transition-all hover:shadow-xl transform hover:scale-105">
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-bold">{course.name}</h3>
+                <p className="text-orange-600 text-lg font-bold">{course.fees}</p>
               </div>
+              <div className="flex items-center text-sm text-gray-600 mt-2">
+                <span>{course.duration}</span>
+                <span className="mx-2">|</span>
+                <span>{course.type}</span>
+                <span className="mx-2">|</span>
+                <span>{course.category}</span>
+              </div>
+              <button className="mt-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full shadow-md hover:bg-blue-700 transition">
+                Apply for this Course
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Placements Section */}
+      {activeTab === "placements" && (
+        <div className="placements-section mt-6">
+          <h2 className="text-3xl font-bold text-center text-gray-900">
+            Placement Highlights
+          </h2>
+          <div className="flex items-center justify-center space-x-4 my-8">
+            <button
+              onClick={() => setSelectedYear(2023)}
+              className={`px-6 py-2 rounded-full font-semibold transition-all ${
+                selectedYear === 2023
+                  ? "bg-indigo-600 text-white shadow-lg"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              2023
+            </button>
+            <button
+              onClick={() => setSelectedYear(2024)}
+              className={`px-6 py-2 rounded-full font-semibold transition-all ${
+                selectedYear === 2024
+                  ? "bg-indigo-600 text-white shadow-lg"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              2024
+            </button>
+          </div>
+
+          <div className="bg-white p-8 rounded-lg shadow-lg mb-12">
+            <h4 className="text-2xl font-bold text-gray-800 mb-4">
+              {selectedYear} Placement Highlights at {docInfo.name}
+            </h4>
+
+            <p className="text-gray-700 leading-relaxed mb-8">
+              {docInfo.placement[selectedYear]?.description}
+            </p>
+
+            <h4 className="text-xl font-semibold text-gray-800 mb-4">
+              Top Recruiters
+            </h4>
+            <p className="text-gray-600 mb-6">
+              {docInfo.placement[selectedYear]?.topRecruiters.join(", ")}.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 bg-gray-100 p-4 rounded-lg shadow-sm">
               <div>
-                <p className="font-semibold text-gray-700">Top Recruiters</p>
-                <p className="text-sm text-gray-600">
-                  {docInfo.placement[selectedYear].topRecruiters.slice(0, 5).join(", ")} and more...
+                <p className="font-semibold text-gray-700">
+                  Total number of Offers
+                </p>
+                <p className="text-lg font-bold text-indigo-600">
+                  {docInfo.placement[selectedYear]?.totalOffers} +
                 </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Courses & Fees Section */}
-      <div className="mt-12">
-        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
-          Courses And Fees
-        </h3>
-        <div className="grid md:grid-cols-2 gap-8">
-          {docInfo.courses.map((course, index) => (
-            <div
-              key={index}
-              className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transform transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <h4 className="text-xl font-bold text-gray-800 mb-2">
-                  {course.name}
-                </h4>
-                <div className="flex items-center space-x-3 text-sm text-gray-600 mb-4">
-                  <span className="flex items-center space-x-1">
-                    <FaRegCalendarAlt className="text-blue-500" />
-                    <span>{course.duration}</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <FaBuilding className="text-green-500" />
-                    <span>{course.type}</span>
-                  </span>
-                </div>
+      {/* FAQ Section */}
+      <div className="bg-white p-8 rounded-lg shadow-lg mt-6">
+        <h3 className="text-2xl font-bold mb-4">Frequently Asked Questions</h3>
+        <div className="space-y-4">
+          {docInfo.questions?.map((q, index) => (
+            <div key={index} className="border-b">
+              <div className="flex justify-between items-center py-2 cursor-pointer" onClick={() => toggleFaq(index)}>
+                <span className="font-semibold">{q.question}</span>
+                <span>{faqOpen[index] ? "−" : "+"}</span>
               </div>
-              <div className="flex justify-between items-center">
-                <p className="text-2xl font-bold text-indigo-600">
-                  {currencySymbol}
-                  {course.fees}
-                </p>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full transition-all duration-300">
-                  Apply Now
-                </button>
-              </div>
+              {faqOpen[index] && <p className="py-2">{q.answer}</p>}
             </div>
           ))}
         </div>
@@ -344,7 +483,7 @@ const Appointment = () => {
         </button>
       </div>
     </div>
-  ) : null;
+  );
 };
 
 export default Appointment;

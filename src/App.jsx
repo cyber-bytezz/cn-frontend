@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+import React, { useState, useEffect } from 'react'; // Make sure to include useEffect here
 import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Collages from './pages/Collages';
 import Login from './pages/Login';
@@ -10,7 +11,7 @@ import Form from './pages/Form';
 import Appointment from './pages/Appointment';
 import MyAppointments from './pages/MyAppointments';
 import MyProfile from './pages/MyProfile';
-import Footer from './components/Footer';
+import PopUpForm from './components/PopUpForm';
 
 const App = () => {
   const [appointmentDetails, setAppointmentDetails] = useState({
@@ -18,26 +19,22 @@ const App = () => {
     slotTime: '',
     docName: 'Looking for College',
   });
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false); // State for pop-up visibility
 
   // Function to get current date and time
   const getCurrentDateTime = () => {
     const currentDate = new Date();
-
-    // Format the date as DD_MM_YYYY
     const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}_${
       (currentDate.getMonth() + 1).toString().padStart(2, '0')
     }_${currentDate.getFullYear()}`;
-
-    // Format the time as HH:MM AM/PM
     const formattedTime = currentDate.toLocaleTimeString([], {
       hour: '2-digit',
       minute: '2-digit',
     });
-
     return { formattedDate, formattedTime };
   };
 
-  // This will run when the component mounts (or user clicks, depending on logic)
+  // Set appointment details on component mount
   useEffect(() => {
     const { formattedDate, formattedTime } = getCurrentDateTime();
     setAppointmentDetails((prevDetails) => ({
@@ -45,7 +42,20 @@ const App = () => {
       slotDate: formattedDate,
       slotTime: formattedTime,
     }));
+
+    // Automatically open pop-up after 5 seconds
+    const timer = setTimeout(() => {
+      setIsPopUpOpen(true);
+    }, 5000);
+
+    // Cleanup timer if the component is unmounted before 5 seconds
+    return () => clearTimeout(timer);
   }, []);
+
+  // Function to close pop-up
+  const closePopUp = () => {
+    setIsPopUpOpen(false);
+  };
 
   return (
     <div className="mx-4 sm:mx-[10%]">
@@ -63,6 +73,9 @@ const App = () => {
         <Route path="/form" element={<Form appointmentDetails={appointmentDetails} />} />
       </Routes>
       <Footer />
+
+      {/* Pop-up Form */}
+      <PopUpForm isOpen={isPopUpOpen} onClose={closePopUp} />
     </div>
   );
 };
