@@ -14,7 +14,7 @@ const Header = () => {
 
   const [placeholder, setPlaceholder] = useState("Search for specialties...");
 
-  const phrases = ["Find Over 3 Lakh Reviews", "Find Over 3 Lakh Colleges"];
+  const phrases = ["Over 3 Lakh Reviews", "Over 3 Lakh Colleges"];
 
   const bgImages = [
     "https://t4.ftcdn.net/jpg/06/30/76/11/360_F_630761173_Hkeqf7J3DYfICjQQaMkTiSpCOK7XOq1q.jpg",
