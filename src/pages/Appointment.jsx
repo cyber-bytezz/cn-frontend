@@ -109,59 +109,79 @@ const Appointment = () => {
   return (
     <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
       {/* College Details Section */}
-      <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden md:flex md:gap-8 transition-transform duration-500 hover:scale-105">
-        <div className="flex-shrink-0 w-full md:w-1/3">
+      <div className="max-w-6xl mx-auto p-4 bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row gap-4 transition-transform duration-500 hover:scale-105 hover:shadow-xl">
+        {/* Image Container */}
+        <div className="flex-shrink-0 w-full h-48 md:h-full md:w-1/3 relative">
           <img
-            className="w-full h-64 md:h-full object-cover rounded-t-lg md:rounded-l-2xl"
+            className="w-full h-full object-cover rounded-t-lg md:rounded-l-2xl"
             src={docInfo?.image}
             alt={docInfo?.name}
           />
+          <div className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-sm">
+            <FaBuilding className="text-indigo-600 w-6 h-6" />
+          </div>
         </div>
 
-        <div className="p-6 md:p-10 w-full">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2 flex items-center">
-              {docInfo?.name}
+        {/* Content Container */}
+        <div className="p-4 md:p-6 w-full flex flex-col gap-4">
+          {/* Title Section */}
+          <div className="flex items-center space-x-2">
+            <h2 className="text-lg md:text-2xl lg:text-4xl font-bold text-gray-900 flex items-center">
+              <span className="truncate w-full">{docInfo?.name}</span>
               <img
                 src={assets.verified_icon}
                 alt="Verified"
-                className="ml-2 w-6 inline-block"
+                className="ml-2 w-5 h-5 lg:w-6 lg:h-6"
                 title="Verified"
               />
             </h2>
           </div>
 
           {/* Rating and Reviews */}
-          <div className="flex items-center mt-4">
-            <div className="flex items-center space-x-1 text-yellow-400">
-              {[...Array(5)].map((star, i) => (
+          <div className="flex items-center text-sm text-gray-700 mt-1 md:mt-2">
+            <div className="flex items-center text-yellow-500 space-x-1">
+              {[...Array(5)].map((_, i) => (
                 <FaStar
                   key={i}
-                  className={i < docInfo.rating ? "text-yellow-500" : "text-gray-300"}
+                  className={
+                    i < docInfo.rating ? "text-yellow-500" : "text-gray-300"
+                  }
                 />
               ))}
             </div>
-            <p className="ml-2 text-gray-700">
-              {`[${docInfo.rating}] Based on ${docInfo.reviews} Reviews`}
-            </p>
+            <p className="ml-2">{`[${docInfo.rating}] Based on ${docInfo.reviews} Reviews`}</p>
+          </div>
+
+          {/* Button Tags */}
+          <div className="flex flex-wrap gap-2 mt-2">
+            {["place", "est", "anothername", "agre"].map((field, index) => (
+              <button
+                key={index}
+                className="px-3 py-1 text-xs border border-indigo-600 text-indigo-600 rounded-full transition-all hover:bg-indigo-600 hover:text-white shadow-sm"
+              >
+                {docInfo[field]}
+              </button>
+            ))}
           </div>
 
           {/* About Section */}
-          <div className="mt-6">
-            <h3 className="text-2xl font-semibold text-gray-800">About</h3>
-            <p className="mt-2 text-gray-600 leading-relaxed">
+          <div className="mt-4">
+            <h3 className="text-lg md:text-xl font-semibold text-gray-800">
+              About
+            </h3>
+            <p className="mt-1 text-gray-600 text-sm leading-relaxed line-clamp-3 hover:line-clamp-none transition-all duration-300 ease-in-out">
               {docInfo?.about}
             </p>
           </div>
 
           {/* Fields Section */}
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-2">
             {Object.keys(docInfo)
               .filter((key) => key.startsWith("field"))
               .map((key, index) => (
                 <span
                   key={index}
-                  className="inline-block px-4 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs shadow-sm"
+                  className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs shadow-md"
                 >
                   {docInfo[key]}
                 </span>
@@ -171,137 +191,182 @@ const Appointment = () => {
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex justify-center space-x-4 my-10">
+      <div className="flex justify-center flex-wrap gap-2 md:gap-4 my-8 md:my-10">
         <button
-          className={`px-6 py-2 font-semibold rounded-full transition-all ${
+          className={`px-4 md:px-6 py-2 font-semibold rounded-full transition-all duration-300 ${
             activeTab === "overview"
-              ? "bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 text-white shadow-lg"
-              : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+              ? "bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 text-white shadow-lg transform scale-105"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
           onClick={() => handleTabClick("overview")}
         >
           Overview
         </button>
         <button
-          className={`px-6 py-2 font-semibold rounded-full transition-all ${
+          className={`px-4 md:px-6 py-2 font-semibold rounded-full transition-all duration-300 ${
             activeTab === "coursesFees"
-              ? "bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-500 text-white shadow-lg"
-              : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+              ? "bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-500 text-white shadow-lg transform scale-105"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
           onClick={() => handleTabClick("coursesFees")}
         >
           Courses & Fees
         </button>
         <button
-          className={`px-6 py-2 font-semibold rounded-full transition-all ${
+          className={`px-4 md:px-6 py-2 font-semibold rounded-full transition-all duration-300 ${
             activeTab === "placements"
-              ? "bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-white shadow-lg"
-              : "bg-gray-300 text-gray-700 hover:bg-gray-400"
+              ? "bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-white shadow-lg transform scale-105"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
           onClick={() => handleTabClick("placements")}
         >
           Placements
         </button>
+        <button
+          className={`px-4 md:px-6 py-2 font-semibold rounded-full transition-all duration-300 ${
+            activeTab === "reviews"
+              ? "bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white shadow-lg transform scale-105"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+          }`}
+          onClick={() => handleTabClick("reviews")}
+        >
+          Reviews
+        </button>
       </div>
 
       {/* Overview Content */}
       {activeTab === "overview" && (
-        <div className="college-overview mt-10 space-y-10">
-          {/* College Overview */}
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Overview</h3>
-            <p>{docInfo.about}</p>
+        <div className="container mx-auto p-4 sm:p-8">
+          {/* Overview Section */}
+          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
+              Overview
+            </h3>
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+              {docInfo.about}
+            </p>
           </div>
 
           {/* Affiliations & Approvals Table */}
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Affiliations & Approvals</h3>
-            <table className="min-w-full bg-white border rounded-lg">
-              <thead>
-                <tr className="bg-gray-100 text-left">
-                  <th className="p-4 font-semibold">College</th>
-                  <th className="p-4 font-semibold">Affiliation</th>
-                  <th className="p-4 font-semibold">Approval</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="p-4">{docInfo.name}</td>
-                  <td className="p-4">{docInfo.anothername}</td>
-                  <td className="p-4">{docInfo.agre}</td>
-                </tr>
-                <tr>
-                  <td className="p-4">{docInfo.name}</td>
-                  <td className="p-4">{docInfo.anothername}</td>
-                  <td className="p-4">{docInfo.agre}</td>
-                </tr>
-                <tr>
-                  <td className="p-4">{docInfo.name}</td>
-                  <td className="p-4">{docInfo.anothername}</td>
-                  <td className="p-4">{docInfo.agre}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Rankings & Awards */}
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Rankings & Awards</h3>
-            <table className="min-w-full bg-white border rounded-lg">
-              <thead>
-                <tr className="bg-gray-100 text-left">
-                  <th className="p-4 font-semibold">Year</th>
-                  <th className="p-4 font-semibold">Award</th>
-                </tr>
-              </thead>
-              <tbody>
-                {docInfo.rankings &&
-                  docInfo.rankings.map((ranking, index) => (
-                    <tr key={index}>
-                      <td className="p-4">{ranking.year}</td>
-                      <td className="p-4">{ranking.award}</td>
+          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl mt-6 sm:mt-8">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
+              Affiliations & Approvals
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border rounded-lg">
+                <thead>
+                  <tr className="bg-gray-50 text-left">
+                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
+                      College
+                    </th>
+                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
+                      Affiliation
+                    </th>
+                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
+                      Approval
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[...Array(3)].map((_, index) => (
+                    <tr
+                      key={index}
+                      className="border-b hover:bg-gray-50 transition-colors"
+                    >
+                      <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                        {docInfo.name}
+                      </td>
+                      <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                        {docInfo.anothername}
+                      </td>
+                      <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                        {docInfo.agre}
+                      </td>
                     </tr>
                   ))}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          {/* Facilities */}
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Facilities</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {/* Rankings & Awards Section */}
+          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl mt-6 sm:mt-8">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
+              Rankings & Awards
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border rounded-lg">
+                <thead>
+                  <tr className="bg-gray-50 text-left">
+                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
+                      Year
+                    </th>
+                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
+                      Award
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {docInfo.rankings &&
+                    docInfo.rankings.map((ranking, index) => (
+                      <tr
+                        key={index}
+                        className="border-b hover:bg-gray-50 transition-colors"
+                      >
+                        <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                          {ranking.year}
+                        </td>
+                        <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                          {ranking.award}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl mt-6 sm:mt-8">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
+              Facilities
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {docInfo.facilities &&
                 docInfo.facilities.map((facility, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center space-y-2"
+                    className="flex flex-col items-center space-y-2 hover:scale-105 transition-transform duration-300"
                   >
+                    {/* Facility Icon */}
                     <img
                       src={facility.icon}
                       alt={facility.name}
-                      className="w-12 h-12"
+                      className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
                     />
-                    <span className="text-gray-700">{facility.name}</span>
+
+                    {/* Facility Name */}
+                    <span className="text-sm sm:text-lg text-gray-600">
+                      {facility.name}
+                    </span>
+
+                    {/* Facility Rating */}
+                    <div className="flex items-center space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar
+                          key={i}
+                          className={
+                            i < Math.round(facility.rating)
+                              ? "text-yellow-500"
+                              : "text-gray-300"
+                          }
+                        />
+                      ))}
+                      <span className="text-gray-700 text-sm">
+                        {facility.rating}/5
+                      </span>
+                    </div>
                   </div>
                 ))}
             </div>
-          </div>
-
-          {/* College Highlights */}
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Highlights</h3>
-            <table className="min-w-full bg-white border rounded-lg">
-              <tbody>
-                {Object.entries(docInfo.highlights || {}).map(
-                  ([key, value], index) => (
-                    <tr className="border-b" key={index}>
-                      <td className="p-4 font-semibold">{key}</td>
-                      <td className="p-4">{value}</td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
           </div>
         </div>
       )}
@@ -310,10 +375,15 @@ const Appointment = () => {
       {activeTab === "coursesFees" && (
         <div className="courses-fees mt-10 space-y-10">
           {docInfo.courses?.map((course, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-lg transition-all hover:shadow-xl transform hover:scale-105">
+            <div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
+            >
               <div className="flex justify-between items-center">
                 <h3 className="text-xl font-bold">{course.name}</h3>
-                <p className="text-orange-600 text-lg font-bold">{course.fees}</p>
+                <p className="text-orange-600 text-lg font-bold">
+                  {course.fees}
+                </p>
               </div>
               <div className="flex items-center text-sm text-gray-600 mt-2">
                 <span>{course.duration}</span>
@@ -389,13 +459,132 @@ const Appointment = () => {
         </div>
       )}
 
+      {/* Reviews Section */}
+      {activeTab === "reviews" && (
+        <div className="reviews-section mt-6 bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-3xl font-bold mb-6 text-gray-800">Reviews</h2>
+          {/* Review Stats */}
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="p-4 bg-gray-100 rounded-lg">
+              <h4 className="text-lg font-semibold">447 Ratings</h4>
+              <div className="flex items-center">
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaRegStar className="text-gray-300" />
+                <span className="ml-2 text-sm text-gray-600">(4.5/5)</span>
+              </div>
+            </div>
+            <div className="p-4 bg-gray-100 rounded-lg">
+              <h4 className="text-lg font-semibold">351 Excellent Ratings</h4>
+              <div className="flex items-center">
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaRegStar className="text-gray-300" />
+                <span className="ml-2 text-sm text-gray-600">(4.0/5)</span>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 bg-gray-100 rounded-lg">
+              <h4 className="text-lg font-semibold">266 Good Ratings</h4>
+              <div className="flex items-center">
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStarHalfAlt className="text-yellow-500" />
+                <FaRegStar className="text-gray-300" />
+                <span className="ml-2 text-sm text-gray-600">(3.8/5)</span>
+              </div>
+            </div>
+            <div className="p-4 bg-gray-100 rounded-lg">
+              <h4 className="text-lg font-semibold">138 Average Ratings</h4>
+              <div className="flex items-center">
+                <FaStar className="text-yellow-500" />
+                <FaStar className="text-yellow-500" />
+                <FaStarHalfAlt className="text-yellow-500" />
+                <FaRegStar className="text-gray-300" />
+                <FaRegStar className="text-gray-300" />
+                <span className="ml-2 text-sm text-gray-600">(3.0/5)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Categories */}
+          <div className="mt-8">
+            <h4 className="text-2xl font-bold text-gray-800 mb-4">
+              Student Reviews
+            </h4>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-700">
+                <strong>Academic:</strong> 7/10
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Faculty:</strong> 8/10
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Infrastructure:</strong> 7/10
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Accommodation:</strong> 7/10
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>Placement:</strong> 9/10
+              </p>
+            </div>
+            <div className="mt-10">
+              <h3 className="text-2xl font-bold mb-6 text-gray-800">
+                Students’ Reviews
+              </h3>
+              <div className="space-y-4">
+                {[
+                  {
+                    review:
+                      "The college has an amazing campus and the faculty is very supportive. The placement opportunities are excellent, especially for CSE and ECE students.",
+                    student: "John Doe, Class of 2023",
+                  },
+                  {
+                    review:
+                      "Great infrastructure and hostel facilities. The academic curriculum is well-structured, but the extracurricular activities could be improved.",
+                    student: "Sarah Lee, Class of 2022",
+                  },
+                  {
+                    review:
+                      "The faculty is very knowledgeable and experienced. The college has a good placement record, but the cafeteria food could be better.",
+                    student: "Michael Smith, Class of 2021",
+                  },
+                ].map((review, index) => (
+                  <div
+                    key={index}
+                    className="p-4 bg-gray-100 rounded-lg shadow-sm"
+                  >
+                    <p className="text-gray-700 font-semibold">
+                      {review.review}
+                    </p>
+                    <span className="block text-right text-sm text-gray-600 mt-2">
+                      — {review.student}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* FAQ Section */}
       <div className="bg-white p-8 rounded-lg shadow-lg mt-6">
         <h3 className="text-2xl font-bold mb-4">Frequently Asked Questions</h3>
         <div className="space-y-4">
           {docInfo.questions?.map((q, index) => (
             <div key={index} className="border-b">
-              <div className="flex justify-between items-center py-2 cursor-pointer" onClick={() => toggleFaq(index)}>
+              <div
+                className="flex justify-between items-center py-2 cursor-pointer"
+                onClick={() => toggleFaq(index)}
+              >
                 <span className="font-semibold">{q.question}</span>
                 <span>{faqOpen[index] ? "−" : "+"}</span>
               </div>

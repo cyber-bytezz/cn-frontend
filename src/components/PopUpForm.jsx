@@ -17,7 +17,7 @@ const PopUpForm = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-2">
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
       {/* Adjust the width dynamically: large on desktop, smaller on mobile */}
       <div className="bg-white rounded-lg shadow-lg p-4 w-full max-w-4xl lg:max-w-5xl md:max-w-3xl sm:max-w-md relative">
         {/* Close button */}
@@ -37,34 +37,48 @@ const PopUpForm = ({ isOpen, onClose }) => {
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <FaFileAlt className="text-orange-500 text-sm md:text-lg" />
-                <span className="text-xs md:text-sm font-medium text-gray-700">Brochure Details</span>
+                <span className="text-xs md:text-sm font-medium text-gray-700">
+                  Brochure Details
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <FaMoneyCheckAlt className="text-orange-500 text-sm md:text-lg" />
-                <span className="text-xs md:text-sm font-medium text-gray-700">Check Detailed Fees</span>
+                <span className="text-xs md:text-sm font-medium text-gray-700">
+                  Check Detailed Fees
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <FaClipboardCheck className="text-orange-500 text-sm md:text-lg" />
-                <span className="text-xs md:text-sm font-medium text-gray-700">Shortlist & Apply</span>
+                <span className="text-xs md:text-sm font-medium text-gray-700">
+                  Shortlist & Apply
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <FaHandsHelping className="text-orange-500 text-sm md:text-lg" />
-                <span className="text-xs md:text-sm font-medium text-gray-700">24/7 Counseling</span>
+                <span className="text-xs md:text-sm font-medium text-gray-700">
+                  24/7 Counseling
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <FaUniversity className="text-orange-500 text-sm md:text-lg" />
-                <span className="text-xs md:text-sm font-medium text-gray-700">Scholarships</span>
+                <span className="text-xs md:text-sm font-medium text-gray-700">
+                  Scholarships
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <FaCalendarAlt className="text-orange-500 text-sm md:text-lg" />
-                <span className="text-xs md:text-sm font-medium text-gray-700">Application Deadlines</span>
+                <span className="text-xs md:text-sm font-medium text-gray-700">
+                  Application Deadlines
+                </span>
               </div>
             </div>
           </div>
 
           {/* Right side - Registration Form */}
           <div className="col-span-2">
-            <h2 className="text-lg md:text-2xl font-semibold mb-3 text-gray-800">Register Now to Apply</h2>
+            <h2 className="text-lg md:text-2xl font-semibold mb-3 text-gray-800">
+              Register Now to Apply
+            </h2>
             <form className="space-y-2 md:space-y-3">
               {/* Full Name */}
               <div className="flex items-center space-x-2">
@@ -122,7 +136,8 @@ const PopUpForm = ({ isOpen, onClose }) => {
                   By submitting this form, you agree to our{" "}
                   <a href="#" className="text-indigo-500 underline">
                     Terms of Use
-                  </a>.
+                  </a>
+                  .
                 </p>
                 <button
                   type="submit"

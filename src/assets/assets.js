@@ -187,26 +187,58 @@ export const Collages = [
       line1: "17th Cross, Richmond",
       line2: "Circle, Ring Road, London",
     },
-
     facilities: [
       {
         name: "Campus",
-        icon: "https://example.com/icon-campus.png",
+        icon: "https://cdn-icons-png.flaticon.com/128/182/182336.png",
+        rating: 4.5
+      },
+      {
+        name: "Comp Labs",
+        icon:"https://cdn-icons-png.flaticon.com/512/2393/2393605.png",
+        rating: 4.7
+      },
+      {
+        name: "Sports",
+        icon:"https://cdn-icons-png.flaticon.com/512/7438/7438654.png",
+        rating: 4.6
       },
       {
         name: "Gym",
-        icon: "https://example.com/icon-gym.png",
+        icon:"https://cdn-icons-png.flaticon.com/128/7984/7984880.png",
+        rating: 4.8
       },
       {
-        name: "Library",
-        icon: "https://example.com/icon-library.png",
+        name: "Medical",
+        icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_R_yXNKqVkZkUW6c4lOkwIxSi2nurpSeDGQ&s",
+        rating: 4.2
+      },
+      {
+        name: "Cafeteria",
+        icon:"https://thumbs.dreamstime.com/b/cafeteria-diner-vector-signs-coffee-cup-smoke-fork-knife-plate-icon-symbols-restaurant-cafe-icons-cafeteria-123781463.jpg",
+        rating: 4.4
       },
       {
         name: "Laboratory",
-        icon: "https://example.com/icon-lab.png",
+        icon:"https://cdn-icons-png.flaticon.com/512/8711/8711362.png",
+        rating: 4.9
       },
-    ],
-
+      {
+        name: "Library",
+        icon:"https://cdn-icons-png.flaticon.com/512/9043/9043296.png",
+        rating: 4.7
+      },
+      {
+        name: "Auditorium",
+        icon:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7NFqGsDLmfJIEeyfHeq07mAFa_VpitXxDbQ&s",
+        rating: 4.3
+      },
+      {
+        name: "Hostel",
+        icon:"https://thumbs.dreamstime.com/b/hotel-icon-vector-set-white-background-eps-331976399.jpg",
+        rating: 4.6
+      }
+    ],       
     rankings: [
       {
         year: "2023",
