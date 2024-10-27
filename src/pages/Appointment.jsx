@@ -109,11 +109,11 @@ const Appointment = () => {
   return (
     <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
       {/* College Details Section */}
-      <div className="max-w-6xl mx-auto p-4 bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row gap-4 transition-transform duration-500 hover:scale-105 hover:shadow-xl">
+      <div className="max-w-6xl mx-auto p-4 bg-white rounded-xl shadow-md flex flex-col md:flex-row gap-6 transition-transform duration-500 hover:scale-105 hover:shadow-lg">
         {/* Image Container */}
-        <div className="flex-shrink-0 w-full h-48 md:h-full md:w-1/3 relative">
+        <div className="w-full md:w-1/3 h-40 md:h-auto relative overflow-hidden rounded-lg">
           <img
-            className="w-full h-full object-cover rounded-t-lg md:rounded-l-2xl"
+            className="w-full h-full object-cover rounded-lg"
             src={docInfo?.image}
             alt={docInfo?.name}
           />
@@ -123,22 +123,22 @@ const Appointment = () => {
         </div>
 
         {/* Content Container */}
-        <div className="p-4 md:p-6 w-full flex flex-col gap-4">
+        <div className="flex-1 flex flex-col justify-between p-4 md:p-6">
           {/* Title Section */}
-          <div className="flex items-center space-x-2">
-            <h2 className="text-lg md:text-2xl lg:text-4xl font-bold text-gray-900 flex items-center">
-              <span className="truncate w-full">{docInfo?.name}</span>
-              <img
-                src={assets.verified_icon}
-                alt="Verified"
-                className="ml-2 w-5 h-5 lg:w-6 lg:h-6"
-                title="Verified"
-              />
+          <div className="flex items-start justify-between">
+            <h2 className="text-xl md:text-3xl font-bold text-gray-900">
+              {docInfo?.name}
             </h2>
+            <img
+              src={assets.verified_icon}
+              alt="Verified"
+              className="ml-2 w-5 h-5 md:w-6 md:h-6"
+              title="Verified"
+            />
           </div>
 
           {/* Rating and Reviews */}
-          <div className="flex items-center text-sm text-gray-700 mt-1 md:mt-2">
+          <div className="flex items-center text-sm text-gray-700 mt-2">
             <div className="flex items-center text-yellow-500 space-x-1">
               {[...Array(5)].map((_, i) => (
                 <FaStar
@@ -153,29 +153,27 @@ const Appointment = () => {
           </div>
 
           {/* Button Tags */}
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-2 mt-3">
             {["place", "est", "anothername", "agre"].map((field, index) => (
-              <button
+              <span
                 key={index}
                 className="px-3 py-1 text-xs border border-indigo-600 text-indigo-600 rounded-full transition-all hover:bg-indigo-600 hover:text-white shadow-sm"
               >
                 {docInfo[field]}
-              </button>
+              </span>
             ))}
           </div>
 
           {/* About Section */}
           <div className="mt-4">
-            <h3 className="text-lg md:text-xl font-semibold text-gray-800">
-              About
-            </h3>
-            <p className="mt-1 text-gray-600 text-sm leading-relaxed line-clamp-3 hover:line-clamp-none transition-all duration-300 ease-in-out">
+            <h3 className="text-lg font-semibold text-gray-800">About</h3>
+            <p className="mt-2 text-gray-600 text-sm leading-relaxed line-clamp-3 hover:line-clamp-none transition-all duration-300 ease-in-out">
               {docInfo?.about}
             </p>
           </div>
 
           {/* Fields Section */}
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-2 mt-3">
             {Object.keys(docInfo)
               .filter((key) => key.startsWith("field"))
               .map((key, index) => (
@@ -237,138 +235,141 @@ const Appointment = () => {
       {/* Overview Content */}
       {activeTab === "overview" && (
         <div className="container mx-auto p-4 sm:p-8">
-          {/* Overview Section */}
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
-              Overview
-            </h3>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-              {docInfo.about}
-            </p>
-          </div>
-
-          {/* Affiliations & Approvals Table */}
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl mt-6 sm:mt-8">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
-              Affiliations & Approvals
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border rounded-lg">
-                <thead>
-                  <tr className="bg-gray-50 text-left">
-                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
-                      College
-                    </th>
-                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
-                      Affiliation
-                    </th>
-                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
-                      Approval
-                    </th>
+        {/* Overview Section */}
+        <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
+            Overview
+          </h3>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            {docInfo.about}
+          </p>
+        </div>
+      
+        {/* Affiliations & Approvals Table */}
+        <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl mt-6 sm:mt-8">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
+            Affiliations & Approvals
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border rounded-lg">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="p-3 sm:p-4 text-sm sm:text-lg font-semibold text-gray-800">
+                    College
+                  </th>
+                  <th className="p-3 sm:p-4 text-sm sm:text-lg font-semibold text-gray-800">
+                    Affiliation
+                  </th>
+                  <th className="p-3 sm:p-4 text-sm sm:text-lg font-semibold text-gray-800">
+                    Approval
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[...Array(3)].map((_, index) => (
+                  <tr
+                    key={index}
+                    className="border-b hover:bg-gray-50 transition-colors duration-300"
+                  >
+                    <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                      {docInfo.name}
+                    </td>
+                    <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                      {docInfo.anothername}
+                    </td>
+                    <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
+                      {docInfo.agre}
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {[...Array(3)].map((_, index) => (
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      
+        {/* Rankings & Awards Section */}
+        <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl mt-6 sm:mt-8">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
+            Rankings & Awards
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border rounded-lg">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="p-3 sm:p-4 text-sm sm:text-lg font-semibold text-gray-800">
+                    Year
+                  </th>
+                  <th className="p-3 sm:p-4 text-sm sm:text-lg font-semibold text-gray-800">
+                    Award
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {docInfo.rankings &&
+                  docInfo.rankings.map((ranking, index) => (
                     <tr
                       key={index}
-                      className="border-b hover:bg-gray-50 transition-colors"
+                      className="border-b hover:bg-gray-50 transition-colors duration-300"
                     >
                       <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
-                        {docInfo.name}
+                        {ranking.year}
                       </td>
                       <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
-                        {docInfo.anothername}
-                      </td>
-                      <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
-                        {docInfo.agre}
+                        {ranking.award}
                       </td>
                     </tr>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Rankings & Awards Section */}
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl mt-6 sm:mt-8">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
-              Rankings & Awards
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border rounded-lg">
-                <thead>
-                  <tr className="bg-gray-50 text-left">
-                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
-                      Year
-                    </th>
-                    <th className="p-3 sm:p-4 text-sm sm:text-xl font-semibold">
-                      Award
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {docInfo.rankings &&
-                    docInfo.rankings.map((ranking, index) => (
-                      <tr
-                        key={index}
-                        className="border-b hover:bg-gray-50 transition-colors"
-                      >
-                        <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
-                          {ranking.year}
-                        </td>
-                        <td className="p-3 sm:p-4 text-sm sm:text-lg text-gray-700">
-                          {ranking.award}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl mt-6 sm:mt-8">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-4 sm:mb-6">
-              Facilities
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-              {docInfo.facilities &&
-                docInfo.facilities.map((facility, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col items-center space-y-2 hover:scale-105 transition-transform duration-300"
-                  >
-                    {/* Facility Icon */}
-                    <img
-                      src={facility.icon}
-                      alt={facility.name}
-                      className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
-                    />
-
-                    {/* Facility Name */}
-                    <span className="text-sm sm:text-lg text-gray-600">
-                      {facility.name}
-                    </span>
-
-                    {/* Facility Rating */}
-                    <div className="flex items-center space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className={
-                            i < Math.round(facility.rating)
-                              ? "text-yellow-500"
-                              : "text-gray-300"
-                          }
-                        />
-                      ))}
-                      <span className="text-gray-700 text-sm">
-                        {facility.rating}/5
-                      </span>
-                    </div>
-                  </div>
-                ))}
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
+      
+        {/* Facilities Section with Horizontal Scroll on Mobile */}
+        <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl mt-6 sm:mt-8">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
+            Facilities
+          </h3>
+          <div className="flex space-x-6 overflow-x-auto scrollbar-hide p-2">
+            {docInfo.facilities &&
+              docInfo.facilities.map((facility, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 flex flex-col items-center space-y-3 p-4 transform transition-all duration-300 hover:scale-110"
+                >
+                  {/* Facility Icon */}
+                  <img
+                    src={facility.icon}
+                    alt={facility.name}
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
+                  />
+      
+                  {/* Facility Name */}
+                  <span className="text-base sm:text-lg font-semibold text-gray-700 text-center">
+                    {facility.name}
+                  </span>
+      
+                  {/* Facility Rating */}
+                  <div className="flex items-center space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <FaStar
+                        key={i}
+                        className={
+                          i < Math.round(facility.rating)
+                            ? "text-yellow-500"
+                            : "text-gray-300"
+                        }
+                      />
+                    ))}
+                    <span className="text-gray-600 text-sm sm:text-base">
+                      {facility.rating}/5
+                    </span>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
+      
       )}
 
       {/* Courses & Fees Section */}
